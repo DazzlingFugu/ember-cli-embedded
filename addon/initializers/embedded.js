@@ -1,10 +1,11 @@
 import Ember from 'ember';
+import { resolveFactory } from '../helpers/registry';
 
 const { String: { camelize } } = Ember;
 
 const { get, getWithDefault } = Ember;
 export function initialize(registry, application) {
-  const env = registry.container().lookupFactory('config:environment');
+  const env = resolveFactory(registry, application, 'config:environment');
   if (get(env, 'embedded')) {
     const appName = camelize(getWithDefault(application, 'name', ''));
     const embeddedName = get(env, 'embedded.name');

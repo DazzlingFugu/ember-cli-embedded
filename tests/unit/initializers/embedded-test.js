@@ -1,13 +1,14 @@
 import Ember from 'ember';
 import { initialize } from '../../../initializers/embedded';
 import { module, test } from 'qunit';
+import { resolve } from 'ember-cli-embedded/helpers/registry';
 
 let registry, application;
 const appName = 'my-app-name';
 const camelized = Ember.String.camelize(appName);
 
 module('Unit | Initializer | embedded', {
-  setup: function() {
+  setup() {
     Ember.run(function() {
       application = Ember.Application.create();
       application.set('name', appName);
@@ -15,7 +16,7 @@ module('Unit | Initializer | embedded', {
       application.deferReadiness();
     });
   },
-  teardown: function() {
+  teardown() {
     Ember.run(function() {
       application.destroy();
     });
@@ -87,26 +88,26 @@ test('The config is registered in the container', function(assert) {
   application.deferReadiness(); // We make sure the all won't start
 
   application.start();
-  assert.ok(application.registry.container().lookup('config:embedded'));
+  assert.ok(resolve(application.registry, application, 'config:embedded'));
 });
 
 test('The config is merged', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep', config: { env: true } }});
+  application.register('config:environment', { embedded: { name: 'beep', config: { env: true } } });
   initialize(registry, application);
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ bootstrap: true });
-  const embedConfig = application.registry.container().lookup('config:embedded');
+  const embedConfig = resolve(application.registry, application, 'config:embedded');
   assert.ok(embedConfig.get('env'));
   assert.ok(embedConfig.get('bootstrap'));
 });
 
 test('The config during bootstrap has a greater priority', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep', config: { woow: 'such code' } }});
+  application.register('config:environment', { embedded: { name: 'beep', config: { woow: 'such code' } } });
   initialize(registry, application);
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ woow: 'much tests' });
-  const embedConfig = application.registry.container().lookup('config:embedded');
+  const embedConfig = resolve(application.registry, application, 'config:embedded');
   assert.equal(embedConfig.get('woow'), 'much tests');
 });
