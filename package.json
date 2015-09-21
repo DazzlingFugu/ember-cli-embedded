@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-embedded",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
@@ -11,7 +11,7 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "git@github.com:xcambar/ember-cli-embedded.git",
   "engines": {
     "node": ">= 0.10.0"
   },
@@ -38,7 +38,9 @@
     "ember-try": "0.0.6"
   },
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "embed",
+    "embedded"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.3"
