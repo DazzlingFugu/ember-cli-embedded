@@ -1,10 +1,11 @@
-# Ember-cli-embedded
+# Ember-cli-embedded [![Travis build](https://api.travis-ci.org/xcambar/ember-cli-embedded.svg)](https://travis-ci.org/xcambar/ember-cli-embedded)
 
-Makes it easier for non-Ember pages/apps to embed an Ember application.
+Makes it easier to embed your Ember application in another
+(non-Ember) app.
 
-This is especially useful when migrating a previous architecture to Ember.
-Use it to replace your existing non-Ember code part by part for
-some new and shiny Ember Components and offer your team a smooth migration
+This is especially useful when migrating an existing app to Ember.
+Replace your existing non-Ember code part by part with
+your shiny Ember Components and offer your team a smooth migration
 towards the evergreen fields of Ember.
 
 # Usage
@@ -31,12 +32,15 @@ In your `config/environment.js`, add the following config:
   }
 ```
 
+As long as the value for `embedded` is truthy, your app will hold
+until you start it.
+
 ### Start your app
 
-Your app now exposes the `exposedEmberAppName` variable that is your
-actual Ember application.
+Your app now exposes the `window.exposedEmberAppName` variable which
+points to your actual Ember application.
 
-Your app __will no longer start__ unless you call the `start(config)`
+Your app __will not start__ unless you call the `start(config)`
 method on your application to resume.
 
 In your JS code, just execute `exposedEmberAppName.start()` to resume
