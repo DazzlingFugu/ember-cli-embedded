@@ -2,8 +2,8 @@ import Ember from 'ember';
 import { resolveFactory } from '../helpers/registry';
 
 const { String: { camelize } } = Ember;
-
 const { get, getWithDefault } = Ember;
+
 export function initialize(registry, application) {
   const env = resolveFactory(registry, application, 'config:environment');
   if (get(env, 'embedded')) {
@@ -25,6 +25,6 @@ export function initialize(registry, application) {
 }
 
 export default {
-  name: 'embedded',
+  name: 'ember-cli-embedded',
   initialize
 };
