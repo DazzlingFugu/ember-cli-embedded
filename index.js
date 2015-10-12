@@ -19,5 +19,11 @@ module.exports = {
                   'use config.exportApplicationGlobal instead.',
                   Object.keys(config).indexOf('name') !== -1);
     delete config.name;
+
+    // As the app will be embedded, we should not make any assumptions
+    // regarding the execution context (aka index.html) and therefore
+    // (try to) make sure that the app can be deployed to any page,
+    // therefore move the config anywhere but in the meta tag.
+    this.app.options.storeConfigInMeta = false;
   }
 };
