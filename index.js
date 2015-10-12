@@ -14,12 +14,6 @@ module.exports = {
       config.embedded = {};
     }
 
-    console.warn('[ember-cli-embedded] the `name` property has been deprecated, ' +
-                  'to change the name of the exposed application, ' +
-                  'use config.exportApplicationGlobal instead.',
-                  Object.keys(config).indexOf('name') !== -1);
-    delete config.name;
-
     // As the app will be embedded, we should not make any assumptions
     // regarding the execution context (aka index.html) and therefore
     // (try to) make sure that the app can be deployed to any page,
