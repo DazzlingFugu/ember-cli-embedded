@@ -7,9 +7,9 @@ export function initialize(registry, application) {
   const env = resolveFactory(registry, application, 'config:environment');
   if (get(env, 'embedded')) {
     application.reopen({
-      start: Ember.run.bind(application, function(config) {
+      start: Ember.run.bind(application, function emberCliEmbeddedStart(config) {
         const embeddedConfig = Ember.Object.extend(
-          getWithDefault(env, 'embedded.config', {}),
+          getWithDefault(env, 'embedded', {}),
           config || {}
         );
         this.register('config:embedded', embeddedConfig);

@@ -56,7 +56,7 @@ test('it adds a start method for convenience', function(assert) {
 
 test('calling start allows to resume the bootstrap', function(assert) {
   assert.expect(1);
-  application.register('config:environment', { embedded: { name: 'beep' } });
+  application.register('config:environment', { embedded: {} });
   initialize(registry, application);
   application.deferReadiness(); // We make sure the all won't start
 
@@ -66,7 +66,7 @@ test('calling start allows to resume the bootstrap', function(assert) {
 });
 
 test('The config is registered in the container', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep' } });
+  application.register('config:environment', { embedded: {} });
   initialize(registry, application);
   application.deferReadiness(); // We make sure the all won't start
 
@@ -75,18 +75,18 @@ test('The config is registered in the container', function(assert) {
 });
 
 test('The config is merged', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep', config: { env: true } } });
+  application.register('config:environment', { embedded: { env: 'bla' } });
   initialize(registry, application);
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ bootstrap: true });
   const embedConfig = resolve(application.registry, application, 'config:embedded');
-  assert.ok(embedConfig.get('env'));
+  assert.equal(embedConfig.get('env'), 'bla');
   assert.ok(embedConfig.get('bootstrap'));
 });
 
 test('The config during bootstrap has a greater priority', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep', config: { woow: 'such code' } } });
+  application.register('config:environment', { embedded: { woow: 'such code' } });
   initialize(registry, application);
   application.deferReadiness(); // We make sure the all won't start
 

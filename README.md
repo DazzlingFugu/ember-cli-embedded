@@ -25,10 +25,7 @@ In your `config/environment.js`, add the following config:
 
 ```js
   embedded: {
-    name: "exposedEmberAppName",
-    config: {
       //Add anything you want as default values
-    }
   }
 ```
 
@@ -37,14 +34,17 @@ until you start it.
 
 ### Start your app
 
-Your app now exposes the `window.exposedEmberAppName` variable which
-points to your actual Ember application.
+This addon relies on [ember-export-application-global](https://github.com/ember-cli/ember-export-application-global)
+to expose a global variable. By default, it exposes your app under
+its capitalized name, _eg._ `MyApp`. See its documentation for
+more configuration information.
 
-Your app __will not start__ unless you call the `start(config)`
-method on your application to resume.
+In your JS code, just execute `MyApp.start()` to resume
+your application. It takes an optional configuration as its
+first argument.
 
-In your JS code, just execute `exposedEmberAppName.start()` to resume
-your application.
+Your app __will not start__ unless you call the `MyApp.start(config)`
+method.
 
 ## Pass config from your JS code
 
