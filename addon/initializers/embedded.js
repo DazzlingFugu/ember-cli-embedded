@@ -1,15 +1,16 @@
 import Ember from 'ember';
 import { resolveFactory } from '../helpers/registry';
 
-const { get, getWithDefault } = Ember;
+const { get } = Ember;
 
 export function initialize(registry, application) {
   const env = resolveFactory(registry, application, 'config:environment');
-  if (get(env, 'embedded')) {
+  const isEmbedded = get(env, 'embedded');
+  if (isEmbedded) {
     application.reopen({
       start: Ember.run.bind(application, function emberCliEmbeddedStart(config) {
         const embeddedConfig = Ember.Object.extend(
-          getWithDefault(env, 'embedded', {}),
+          isEmbedded === true ? {} : isEmbedded,
           config || {}
         );
         this.register('config:embedded', embeddedConfig);
