@@ -5,7 +5,6 @@ import { resolve } from 'ember-cli-embedded/helpers/registry';
 
 let registry, application;
 const appName = 'my-app-name';
-const camelized = Ember.String.camelize(appName);
 
 module('Unit | Initializer | embedded', {
   setup() {
@@ -45,22 +44,6 @@ test('it defers readiness of the app', function(assert) {
   initialize(registry, application);
 
   assert.equal(application._readinessDeferrals, initialDeferrals + 1, 'it added a deferral');
-});
-
-test('it exposes under the camelized app name by default', function(assert) {
-  application.register('config:environment', { embedded: true });
-  initialize(registry, application);
-
-  assert.ok(window[camelized]);
-  assert.equal(window[camelized], application, 'it exposes the full app');
-});
-
-test('it exposes under a custom name if provided', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep' } });
-  initialize(registry, application);
-
-  assert.ok(window.beep, 'it prefers the embedded name');
-  assert.equal(window.beep, application, 'it exposes the full app');
 });
 
 test('it adds a start method for convenience', function(assert) {
