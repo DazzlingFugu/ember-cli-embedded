@@ -6,6 +6,7 @@ export function resolve(registry, application, name) {
     return application.__container__.lookup('config:embedded');
   }
 }
+
 export function resolveFactory(registry, application, name) {
   if (registry.container) {
     // pre Ember-2.2.0
