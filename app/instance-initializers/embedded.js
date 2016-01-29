@@ -1,8 +1,8 @@
 import config from '../config/environment';
-import lodash from 'lodash';
+import Ember from 'ember';
 
 export function initialize(appInstance) {
-  lodash.merge(
+  Ember.$.extend(true, // Deep merge
     appInstance.container.lookup('config:environment').APP,
     appInstance.container.lookup('config:embedded')
   );
