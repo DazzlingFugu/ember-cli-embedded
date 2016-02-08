@@ -61,6 +61,12 @@ You can find this configuration from your container as follows:
 const embeddedConfig = container.lookup('config:embedded');
 ```
 
+## Override your APP configuration
+
+The passed ocnfiguration will be merged in your `APP` configuration key,
+which is very useful, for instance, if you want to change the `rootElement`
+of your application and other context-sensitive values.
+
 # Development
 
 ## Installation
