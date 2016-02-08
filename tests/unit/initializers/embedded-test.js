@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { initialize } from '../../../initializers/embedded';
 import { module, test } from 'qunit';
-import { resolve } from 'ember-cli-embedded/helpers/registry';
+import { resolveFactory } from 'ember-cli-embedded/helpers/registry';
 
 let registry, application;
 const appName = 'my-app-name';
@@ -24,7 +24,7 @@ module('Unit | Initializer | embedded', {
 
 test('it works without any specific config', function(assert) {
   application.register('config:environment', {});
-  initialize(registry, application);
+  initialize(application);
 
   // you would normally confirm the results of the initializer here
   assert.ok(true);
@@ -32,7 +32,7 @@ test('it works without any specific config', function(assert) {
 
 test('it does not expose when embedded config is falsy', function(assert) {
   application.register('config:environment', { embedded: false });
-  initialize(registry, application);
+  initialize(application);
 
   assert.ok(window.beep === undefined);
   assert.ok(application.start === undefined);
@@ -41,14 +41,14 @@ test('it does not expose when embedded config is falsy', function(assert) {
 test('it defers readiness of the app', function(assert) {
   application.register('config:environment', { embedded: true });
   const { _readinessDeferrals:initialDeferrals } = application;
-  initialize(registry, application);
+  initialize(application);
 
   assert.equal(application._readinessDeferrals, initialDeferrals + 1, 'it added a deferral');
 });
 
 test('it adds a start method for convenience', function(assert) {
   application.register('config:environment', { embedded: { name: 'beep' } });
-  initialize(registry, application);
+  initialize(application);
 
   assert.ok(application.start);
   assert.equal(typeof application.start, 'function');
@@ -57,7 +57,7 @@ test('it adds a start method for convenience', function(assert) {
 test('calling start allows to resume the bootstrap', function(assert) {
   assert.expect(1);
   application.register('config:environment', { embedded: {} });
-  initialize(registry, application);
+  initialize(application);
   application.deferReadiness(); // We make sure the all won't start
 
   const { _readinessDeferrals:initialDeferrals } = application;
@@ -67,30 +67,30 @@ test('calling start allows to resume the bootstrap', function(assert) {
 
 test('The config is registered in the container', function(assert) {
   application.register('config:environment', { embedded: {} });
-  initialize(registry, application);
+  initialize(application);
   application.deferReadiness(); // We make sure the all won't start
 
   application.start();
-  assert.ok(resolve(application.registry, application, 'config:embedded'));
+  assert.ok(resolveFactory(application.registry, application, 'config:embedded'));
 });
 
 test('The config is merged', function(assert) {
   application.register('config:environment', { embedded: { env: 'bla' } });
-  initialize(registry, application);
+  initialize(application);
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ bootstrap: true });
-  const embedConfig = resolve(application.registry, application, 'config:embedded');
-  assert.equal(embedConfig.get('env'), 'bla');
-  assert.ok(embedConfig.get('bootstrap'));
+  const embedConfig = resolveFactory(application.registry, application, 'config:embedded');
+  assert.equal(Ember.get(embedConfig, 'env'), 'bla');
+  assert.ok(Ember.get(embedConfig, 'bootstrap'));
 });
 
 test('The config during bootstrap has a greater priority', function(assert) {
   application.register('config:environment', { embedded: { woow: 'such code' } });
-  initialize(registry, application);
+  initialize(application);
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ woow: 'much tests' });
-  const embedConfig = resolve(application.registry, application, 'config:embedded');
-  assert.equal(embedConfig.get('woow'), 'much tests');
+  const embedConfig = resolveFactory(application.registry, application, 'config:embedded');
+  assert.equal(Ember.get(embedConfig, 'woow'), 'much tests');
 });

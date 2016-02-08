@@ -12,6 +12,6 @@ export function resolveFactory(registry, application, name) {
     // pre Ember-2.2.0
     return registry.container().lookupFactory(name);
   } else {
-    return application.resolveRegistration(name);
+    return application.__container__.lookupFactory(name);
   }
 }

@@ -11,7 +11,7 @@ export function initialize() {
   if (isEmbedded) {
     application.reopen({
       start: Ember.run.bind(application, function emberCliEmbeddedStart(config) {
-        const embeddedConfig = Ember.Object.extend(
+        const embeddedConfig = Ember.$.extend(true,
           isEmbedded === true ? {} : isEmbedded,
           config || {}
         );
