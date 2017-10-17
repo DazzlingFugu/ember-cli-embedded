@@ -1,21 +1,19 @@
 import Ember from 'ember';
 import { initialize } from '../../../initializers/embedded';
 import { module, test } from 'qunit';
-import { resolveFactory } from 'ember-cli-embedded/helpers/registry';
 
-let registry, application;
+let application;
 const appName = 'my-app-name';
 
 module('Unit | Initializer | embedded', {
-  setup() {
+  beforeEach() {
     Ember.run(function() {
       application = Ember.Application.create();
       application.set('name', appName);
-      registry = application.registry;
       application.deferReadiness();
     });
   },
-  teardown() {
+  afterEach() {
     Ember.run(function() {
       application.destroy();
     });
@@ -71,7 +69,7 @@ test('The config is registered in the container', function(assert) {
   application.deferReadiness(); // We make sure the all won't start
 
   application.start();
-  assert.ok(resolveFactory(application.registry, application, 'config:embedded'));
+  assert.ok(application.resolveRegistration('config:embedded'));
 });
 
 test('The config is merged', function(assert) {
@@ -80,7 +78,7 @@ test('The config is merged', function(assert) {
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ bootstrap: true });
-  const embedConfig = resolveFactory(application.registry, application, 'config:embedded');
+  const embedConfig = application.resolveRegistration('config:embedded');
   assert.equal(Ember.get(embedConfig, 'env'), 'bla');
   assert.ok(Ember.get(embedConfig, 'bootstrap'));
 });
@@ -91,6 +89,6 @@ test('The config during bootstrap has a greater priority', function(assert) {
   application.deferReadiness(); // We make sure the all won't start
 
   application.start({ woow: 'much tests' });
-  const embedConfig = resolveFactory(application.registry, application, 'config:embedded');
+  const embedConfig = application.resolveRegistration('config:embedded');
   assert.equal(Ember.get(embedConfig, 'woow'), 'much tests');
 });
