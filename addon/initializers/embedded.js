@@ -1,12 +1,10 @@
 import Ember from 'ember';
-import { resolveFactory } from '../helpers/registry';
 
 const { get } = Ember;
 
 export function initialize() {
   const application = arguments[1] || arguments[0];
-  const { registry } = application;
-  const env = resolveFactory(registry, application, 'config:environment');
+  const env = application.resolveRegistration('config:environment');
   const isEmbedded = get(env, 'embedded');
   if (isEmbedded) {
     application.reopen({

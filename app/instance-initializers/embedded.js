@@ -1,14 +1,8 @@
 import Ember from 'ember';
 
 export function initialize(appInstance) {
-  let lookupFactory;
-  if (appInstance._lookupFactory) {
-    lookupFactory = appInstance._lookupFactory.bind(appInstance);
-  } else {
-    lookupFactory = appInstance.container.lookupFactory.bind(appInstance.container);
-  }
-  const appConf = lookupFactory('config:environment').APP;
-  const embedConf = lookupFactory('config:embedded');
+  const appConf = appInstance.resolveRegistration('config:environment').APP;
+  const embedConf = appInstance.resolveRegistration('config:embedded');
   Ember.$.extend(true, appConf, embedConf);
 }
 
