@@ -1,18 +1,19 @@
-import Ember from 'ember';
+import { run } from '@ember/runloop';
 import { initialize } from '../../../instance-initializers/embedded';
+import Application from '@ember/application';
 import { module, test } from 'qunit';
 
 module('Unit | Instance Initializer | embedded', {
   beforeEach() {
-    Ember.run(() => {
-      this.application = Ember.Application.create();
+    run(() => {
+      this.application = Application.create();
       this.application.setupForTesting();
       this.application.injectTestHelpers();
       this.appInstance = this.application.buildInstance();
     });
   },
   afterEach() {
-    Ember.run(this.appInstance, 'destroy');
+    run(this.appInstance, 'destroy');
   }
 });
 

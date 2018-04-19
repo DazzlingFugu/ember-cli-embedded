@@ -1,20 +1,23 @@
 import Ember from 'ember';
+import { run } from '@ember/runloop';
+import { get } from '@ember/object';
 import { initialize } from '../../../initializers/embedded';
 import { module, test } from 'qunit';
+import Application from '@ember/application';
 
 let application;
 const appName = 'my-app-name';
 
 module('Unit | Initializer | embedded', {
   beforeEach() {
-    Ember.run(function() {
-      application = Ember.Application.create();
+    run(function() {
+      application = Application.create();
       application.set('name', appName);
       application.deferReadiness();
     });
   },
   afterEach() {
-    Ember.run(function() {
+    run(function() {
       application.destroy();
     });
   }
@@ -79,8 +82,8 @@ test('The config is merged', function(assert) {
 
   application.start({ bootstrap: true });
   const embedConfig = application.resolveRegistration('config:embedded');
-  assert.equal(Ember.get(embedConfig, 'env'), 'bla');
-  assert.ok(Ember.get(embedConfig, 'bootstrap'));
+  assert.equal(get(embedConfig, 'env'), 'bla');
+  assert.ok(get(embedConfig, 'bootstrap'));
 });
 
 test('The config during bootstrap has a greater priority', function(assert) {
@@ -90,5 +93,5 @@ test('The config during bootstrap has a greater priority', function(assert) {
 
   application.start({ woow: 'much tests' });
   const embedConfig = application.resolveRegistration('config:embedded');
-  assert.equal(Ember.get(embedConfig, 'woow'), 'much tests');
+  assert.equal(get(embedConfig, 'woow'), 'much tests');
 });

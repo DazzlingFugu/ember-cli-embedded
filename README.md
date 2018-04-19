@@ -69,24 +69,31 @@ of your application and other context-sensitive values.
 
 # Development
 
-## Installation
+Installation
+------------------------------------------------------------------------------
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
 
-## Running
+### Linting
 
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-## Running Tests
+### Running tests
 
 * `ember test`
 * `ember test --server`
 
-## Building
+### Running the dummy application
 
-* `ember build`
+* `ember serve`
+* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+
+License
+------------------------------------------------------------------------------
+
+This project is licensed under the [MIT License](LICENSE.md).

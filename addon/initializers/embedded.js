@@ -1,6 +1,6 @@
-import Ember from 'ember';
-
-const { get } = Ember;
+import { run } from '@ember/runloop';
+import { get } from '@ember/object';
+import $ from 'jquery';
 
 export function initialize() {
   const application = arguments[1] || arguments[0];
@@ -8,8 +8,8 @@ export function initialize() {
   const isEmbedded = get(env, 'embedded');
   if (isEmbedded) {
     application.reopen({
-      start: Ember.run.bind(application, function emberCliEmbeddedStart(config) {
-        const embeddedConfig = Ember.$.extend(true,
+      start: run.bind(application, function emberCliEmbeddedStart(config) {
+        const embeddedConfig = $.extend(true,
           isEmbedded === true ? {} : isEmbedded,
           config || {}
         );

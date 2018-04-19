@@ -1,9 +1,9 @@
-import Ember from 'ember';
+import $ from 'jquery';
 
 export function initialize(appInstance) {
   const appConf = appInstance.resolveRegistration('config:environment').APP;
   const embedConf = appInstance.resolveRegistration('config:embedded');
-  Ember.$.extend(true, appConf, embedConf);
+  $.extend(true, appConf, embedConf);
 }
 
 export default {
