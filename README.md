@@ -25,12 +25,16 @@ In your `config/environment.js`, add the following config:
 
 ```js
   embedded: {
+    delegateStart: true,
+    config: { // `config` is optional
       //Add anything you want as default values
+    }
   }
 ```
 
-As long as the value for `embedded` is truthy, your app will hold
-until you start it.
+For compatibility reasons, as long as the value for `embedded` is truthy, your app will hold
+until you start it. This behaviour will be removed in future versions.
+Please stick to the config format above.
 
 ### Start your app
 

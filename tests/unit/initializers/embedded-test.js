@@ -1,97 +1,106 @@
-import Ember from 'ember';
-import { run } from '@ember/runloop';
-import { get } from '@ember/object';
-import { initialize } from '../../../initializers/embedded';
-import { module, test } from 'qunit';
 import Application from '@ember/application';
 
-let application;
-const appName = 'my-app-name';
+import { initialize } from 'dummy/initializers/embedded';
+import { module, test } from 'qunit';
+import { setupTest } from 'ember-qunit';
+import { run } from '@ember/runloop';
 
-module('Unit | Initializer | embedded', {
-  beforeEach() {
-    run(function() {
-      application = Application.create();
-      application.set('name', appName);
-      application.deferReadiness();
+module('Unit | Initializer | embedded', function(hooks) {
+  setupTest(hooks);
+
+  hooks.beforeEach(function() {
+    this.TestApplication = Application.extend();
+    this.application = this.TestApplication.create({ autoboot: false });
+    this.application.register('config:environment', {});
+  });
+
+  hooks.afterEach(function() {
+    run(this.application, 'destroy');
+  });
+
+  test('by default, it does not change the normal behaviour', function(assert) {
+    const { _readinessDeferrals: initialDeferrals } = this.application;
+    initialize(this.application);
+    assert.notOk(this.application.start, 'no method has been added');
+    assert.deepEqual(this.application.resolveRegistration('config:embedded'), {}, 'an empty config is registered');
+    assert.equal(this.application._readinessDeferrals, initialDeferrals, 'no deferral has been added');
+  });
+
+  test('without delegateStart, it does not change the normal behaviour', function(assert) {
+    this.application.register('config:environment', {
+      embedded: {
+        delegateStart: false
+      }
     });
-  },
-  afterEach() {
-    run(function() {
-      application.destroy();
+    const { _readinessDeferrals: initialDeferrals } = this.application;
+    initialize(this.application);
+    assert.notOk(this.application.start, 'no method has been added');
+    assert.deepEqual(this.application.resolveRegistration('config:embedded'), {}, 'an empty config is registered');
+    assert.equal(this.application._readinessDeferrals, initialDeferrals, 'no deferral has been added');
+  });
+
+  test('without delegateStart, the specified config is registered', function(assert) {
+    let config = {};
+    this.application.register('config:environment', {
+      embedded: {
+        delegateStart: false,
+        config
+      }
     });
-  }
-});
+    initialize(this.application);
+    assert.deepEqual(this.application.resolveRegistration('config:embedded'), config, 'an empty config is registered');
+  });
 
-test('it works without any specific config', function(assert) {
-  application.register('config:environment', {});
-  initialize(application);
+  test('with delegateStart, it defers the bootstrap of the app', function(assert) {
+    this.application.register('config:environment', {
+      embedded: {
+        delegateStart: true
+      }
+    });
+    const { _readinessDeferrals: initialDeferrals } = this.application;
+    initialize(this.application);
+    assert.ok(this.application.start, 'The start method has been added');
+    assert.notOk(this.application.resolveRegistration('config:embedded'), 'the config is not registered until the app is started');
+    assert.equal(this.application._readinessDeferrals, initialDeferrals + 1, 'a deferral has been added');
+  });
 
-  // you would normally confirm the results of the initializer here
-  assert.ok(true);
-});
+  test('with delegateStart, the specified config is still not registered until the app starts', function(assert) {
+    let config = {};
+    this.application.register('config:environment', {
+      embedded: {
+        delegateStart: true,
+        config
+      }
+    });
+    initialize(this.application);
+    assert.notOk(this.application.resolveRegistration('config:embedded'), 'no config is registered, the app is not started');
+  });
 
-test('it does not expose when embedded config is falsy', function(assert) {
-  application.register('config:environment', { embedded: false });
-  initialize(application);
+  test('at manual bootstrap, the config is merged with the provided one', function(assert) {
+    let config = { yo: 'my config', hey: 'sup?' };
+    this.application.register('config:environment', {
+      embedded: {
+        delegateStart: true,
+        config
+      }
+    });
+    initialize(this.application);
+    this.application.start({ yay: 'one more', yo: 'new config' });
+    const embeddedConfig = this.application.resolveRegistration('config:embedded');
+    assert.equal(embeddedConfig.yo, 'new config', 'passed config overrides default config');
+    assert.equal(embeddedConfig.yay, 'one more', 'default keys are preserved unless overridden');
+    assert.equal(embeddedConfig.hey, 'sup?', 'new keys are injected');
+  });
 
-  assert.ok(window.beep === undefined);
-  assert.ok(application.start === undefined);
-});
-
-test('it defers readiness of the app', function(assert) {
-  application.register('config:environment', { embedded: true });
-  const { _readinessDeferrals:initialDeferrals } = application;
-  initialize(application);
-
-  assert.equal(application._readinessDeferrals, initialDeferrals + 1, 'it added a deferral');
-});
-
-test('it adds a start method for convenience', function(assert) {
-  application.register('config:environment', { embedded: { name: 'beep' } });
-  initialize(application);
-
-  assert.ok(application.start);
-  assert.equal(typeof application.start, 'function');
-});
-
-test('calling start allows to resume the bootstrap', function(assert) {
-  assert.expect(1);
-  application.register('config:environment', { embedded: {} });
-  initialize(application);
-  application.deferReadiness(); // We make sure the all won't start
-
-  const { _readinessDeferrals:initialDeferrals } = application;
-  application.start();
-  assert.equal(application._readinessDeferrals, initialDeferrals - 1, 'it removed a deferral');
-});
-
-test('The config is registered in the container', function(assert) {
-  application.register('config:environment', { embedded: {} });
-  initialize(application);
-  application.deferReadiness(); // We make sure the all won't start
-
-  application.start();
-  assert.ok(application.resolveRegistration('config:embedded'));
-});
-
-test('The config is merged', function(assert) {
-  application.register('config:environment', { embedded: { env: 'bla' } });
-  initialize(application);
-  application.deferReadiness(); // We make sure the all won't start
-
-  application.start({ bootstrap: true });
-  const embedConfig = application.resolveRegistration('config:embedded');
-  assert.equal(get(embedConfig, 'env'), 'bla');
-  assert.ok(get(embedConfig, 'bootstrap'));
-});
-
-test('The config during bootstrap has a greater priority', function(assert) {
-  application.register('config:environment', { embedded: { woow: 'such code' } });
-  initialize(application);
-  application.deferReadiness(); // We make sure the all won't start
-
-  application.start({ woow: 'much tests' });
-  const embedConfig = application.resolveRegistration('config:embedded');
-  assert.equal(get(embedConfig, 'woow'), 'much tests');
+  test('at manual bootstrap, one deferral is removed', function(assert) {
+    this.application.register('config:environment', {
+      embedded: {
+        delegateStart: true
+      }
+    });
+    initialize(this.application);
+    const { _readinessDeferrals: initialDeferrals } = this.application;
+    this.application.start();
+    assert.equal(this.application._readinessDeferrals, initialDeferrals - 1, 'a deferral has been removed');
+  });
 });

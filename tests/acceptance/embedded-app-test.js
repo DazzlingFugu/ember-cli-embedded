@@ -1,21 +1,13 @@
-import Ember from 'ember';
+import { visit } from '@ember/test-helpers';
 import { module, test } from 'qunit';
-import startApp from '../../tests/helpers/start-app';
+import { setupApplicationTest } from 'ember-qunit';
 
-module('Acceptance | embedded app', {
-  beforeEach() {
-    this.application = startApp();
-  },
+module('Acceptance | embedded app', function(hooks) {
+  setupApplicationTest(hooks);
 
-  afterEach() {
-    Ember.run(this.application, 'destroy');
-  }
-});
+  test('visiting /embedded-app', async function(assert) {
+    await visit('/');
 
-test('visiting /embedded-app', function(assert) {
-  visit('/');
-
-  andThen(function() {
     assert.ok(true);
   });
 });
