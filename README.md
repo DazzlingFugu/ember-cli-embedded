@@ -71,6 +71,15 @@ The passed ocnfiguration will be merged in your `APP` configuration key,
 which is very useful, for instance, if you want to change the `rootElement`
 of your application and other context-sensitive values.
 
+## Testing in Ember 3.x
+
+Make sure that, in your `config/environment.js`, you disable the addon for the
+`test` environment, with the following:
+
+```js
+ENV.embedded.delegateStart = false;
+```
+
 # Development
 
 Installation
