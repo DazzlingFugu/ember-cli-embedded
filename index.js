@@ -3,7 +3,6 @@
 module.exports = {
   name: 'ember-cli-embedded',
   config: function (env, config) {
-    config.embedded = config.embedded || false;
     if (!config.embedded || !this.app) {
       return;
     }
