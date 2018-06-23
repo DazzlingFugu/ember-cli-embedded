@@ -3,10 +3,12 @@
 Makes it easier to embed your Ember application in another
 (non-Ember) app.
 
-This is especially useful when migrating an existing app to Ember.
-Replace your existing non-Ember code part by part with
-your shiny Ember Components and offer your team a smooth migration
-towards the evergreen fields of Ember.
+This addon gives you more control over how and when your
+Ember app will boot and also allows to add/override some
+configuration, so that the Ember app can boot with some
+context-dependent config.
+
+We found it especially useful, for example, when migrating an existing app to Ember part by part.
 
 # Usage
 
@@ -19,7 +21,7 @@ ember install ember-cli-embedded
 ## Configuration
 
 This plugin is opt-in; by default, it does nothing to your app unless
-you ask for it.
+you configure it.
 
 In your `config/environment.js`, add the following config:
 
@@ -27,12 +29,12 @@ In your `config/environment.js`, add the following config:
   embedded: {
     delegateStart: true,
     config: { // `config` is optional
-      //Add anything you want as default values
+      // Default values for the config passed at boot
     }
   }
 ```
 
-For compatibility reasons, as long as the value for `embedded` is truthy, your app will hold
+> For compatibility reasons, as long as the value for `embedded` is truthy, your app will hold
 until you start it. This behaviour will be removed in future versions.
 Please stick to the config format above.
 
@@ -43,31 +45,38 @@ to expose a global variable. By default, it exposes your app under
 its capitalized name, _eg._ `MyApp`. See its documentation for
 more configuration information.
 
-In your JS code, just execute `MyApp.start()` to resume
-your application. It takes an optional configuration as its
-first argument.
+In your JS code, just execute `MyApp.start(/* optionalConfig */)` to resume
+the boot of your application. As per the example, it takes an optional
+configuration as its first argument.
 
-Your app __will not start__ unless you call the `MyApp.start(config)`
+Remeber: Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig */)`
 method.
 
-## Pass config from your JS code
+## Access the config from your app
 
-Your JS code will probably have some kind of state that you want your Ember
-app to know about when it is started. You can pass such context with
-this addon.
+You can inject the `embedded` service to access the config:
 
-Both the config in `config/environment.js` and the config given to `start()`
-are merged and stored in your container for later use.
+```
+EmberObject.extend({
+  embedded: service(),
 
-You can find this configuration from your container as follows:
+  logSomeConfigKey() {
+    const value = this.get('embedded.myKey');
+    console.log(value);
+  }
+});
+```
+
+Note: It is sometimes more convenient to access the data from the container directly:
 
 ```js
-const embeddedConfig = container.lookup('config:embedded');
+// Returns the raw config
+let embeddedConfig = Ember.getOwner(this).lookup('config:embedded');
 ```
 
 ## Override your APP configuration
 
-The passed ocnfiguration will be merged in your `APP` configuration key,
+The passed configuration will be merged in your `APP` configuration key,
 which is very useful, for instance, if you want to change the `rootElement`
 of your application and other context-sensitive values.
 
