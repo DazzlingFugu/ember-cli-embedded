@@ -23,9 +23,12 @@ ember install ember-cli-embedded
 This plugin is opt-in; by default, it does nothing to your app unless
 you configure it.
 
-In your `config/environment.js`, add the following config:
+In your `config/environment.js`, add the following config to the `ENV`:
 
 ```js
+  modulePrefix: 'my-app' // name of your application
+  exportApplicationGlobal: true, // exposes your application in production builds 
+  ...
   embedded: {
     delegateStart: true,
     config: { // `config` is optional
