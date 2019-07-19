@@ -18,6 +18,13 @@ We found it especially useful, for example, when migrating an existing app to Em
 ember install ember-cli-embedded
 ```
 
+### Compatibility
+
+* Ember.js v3.4 or above
+* Ember CLI v2.13 or above
+* Node.js v8 or above
+
+
 ## Configuration
 
 This plugin is opt-in; by default, it does nothing to your app unless
@@ -27,7 +34,7 @@ In your `config/environment.js`, add the following config to the `ENV`:
 
 ```js
   modulePrefix: 'my-app' // name of your application
-  exportApplicationGlobal: true, // exposes your application in production builds 
+  exportApplicationGlobal: true, // exposes your application in production builds
   ...
   embedded: {
     delegateStart: true,
