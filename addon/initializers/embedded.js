@@ -1,7 +1,6 @@
 import { deprecate } from '@ember/application/deprecations';
 import { run } from '@ember/runloop';
 import { get } from '@ember/object';
-import jQuery from 'jquery';
 
 export function initialize() {
   const application = arguments[1] || arguments[0];
@@ -35,7 +34,7 @@ export function initialize() {
   if (embeddedConfig.delegateStart) {
     application.reopen({
       start: run.bind(application, function emberCliEmbeddedStart(config = {}) {
-        const _embeddedConfig = jQuery.extend(true,
+        const _embeddedConfig = Object.assign(true,
           {},
           embeddedConfig.config,
           config
