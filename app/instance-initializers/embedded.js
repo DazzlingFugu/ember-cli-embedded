@@ -1,9 +1,9 @@
-import $ from 'jquery';
+import jQuery from 'jquery';
 
 export function initialize(appInstance) {
   const appConf = appInstance.resolveRegistration('config:environment').APP;
   const embedConf = appInstance.resolveRegistration('config:embedded');
-  $.extend(true, appConf, embedConf);
+  jQuery.extend(true, appConf, embedConf);
 }
 
 export default {
