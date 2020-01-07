@@ -34,7 +34,7 @@ export function initialize() {
   if (embeddedConfig.delegateStart) {
     application.reopen({
       start: run.bind(application, function emberCliEmbeddedStart(config = {}) {
-        const _embeddedConfig = Object.assign(true,
+        const _embeddedConfig = Object.assign(
           {},
           embeddedConfig.config,
           config
