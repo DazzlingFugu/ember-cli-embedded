@@ -52,7 +52,7 @@ In your JS code, just execute `MyApp.start(/* optionalConfig */)` to resume
 the boot of your application. As per the example, it takes an optional
 configuration as its first argument.
 
-Remeber: Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig */)`
+Remember: Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig */)`
 method.
 
 ## Access the config from your app
