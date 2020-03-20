@@ -34,61 +34,7 @@ update_configs:
       - match:
           update_type: "all" # all updates including indirect/sub-dependencies
 
-    # Regarding Ember, as `ember-cli-update` is already in charge of updating the related packages,
-    # we should tell Dependabot to ignore these.
-    # To do so, go to https://github.com/ember-cli/ember-new-output if your project is an app, or
-    # https://github.com/ember-cli/ember-addon-output if your project is an add-on, select the Tag
-    # corresponding to your version, open the file `package.json` and refer to the `devDependencies`
-    # key to get the list of first-party dependencies handled by Ember.
-    # Add every package you see in the list below.
     ignored_updates:
-      # Beginning of Ember first-party dependencies
-      - match:
-          dependency_name: "@ember/optional-features"
-      - match:
-          dependency_name: "babel-eslint"
-      - match:
-          dependency_name: "broccoli-asset-rev"
-      - match:
-          dependency_name: "ember-auto-import"
-      - match:
-          dependency_name: "ember-cli"
-      - match:
-          dependency_name: "ember-cli-dependency-checker"
-      - match:
-          dependency_name: "ember-cli-eslint"
-      - match:
-          dependency_name: "ember-cli-inject-live-reload"
-      - match:
-          dependency_name: "ember-cli-sri"
-      - match:
-          dependency_name: "ember-cli-template-lint"
-      - match:
-          dependency_name: "ember-cli-uglify"
-      - match:
-          dependency_name: "ember-disable-prototype-extensions"
-      - match:
-          dependency_name: "ember-export-application-global"
-      - match:
-          dependency_name: "ember-load-initializers"
-      - match:
-          dependency_name: "ember-maybe-import-regenerator"
-      - match:
-          dependency_name: "ember-qunit"
-      - match:
-          dependency_name: "ember-resolver"
-      - match:
-          dependency_name: "ember-source"
-      - match:
-          dependency_name: "ember-source-channel-url"
-      - match:
-          dependency_name: "ember-try"
-      - match:
-          dependency_name: "eslint-plugin-ember"
-      - match:
-          dependency_name: "eslint-plugin-node"
-      - match:
-          dependency_name: "loader.js"
-      - match:
-          dependency_name: "qunit-dom"
-      # End of Ember first-party dependencies
+    - match:
+        # Ignore updates of `ember-cli` as we want to take care of these by ourselves
+        dependency_name: "ember-cli"
