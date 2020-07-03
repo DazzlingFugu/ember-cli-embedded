@@ -1,0 +1,31 @@
+# Dependabot configuration options :
+# https://help.github.com/en/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+
+updates:
+
+  # Required options
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: saturday
+      time: "00:00"
+      timezone: Europe/Paris
+
+    # Behaviour of pull requests
+    open-pull-requests-limit: 2
+    pull-request-branch-name:
+      separator: "-"
+    commit-message:
+      prefix: build
+      include: scope
+
+    # Metadata of pull requests
+    reviewers:
+      - "peopledoc/tribe-js"
+
+    # Control which dependencies are updated
+    ignore:
+      - dependency-name: "ember-cli"
