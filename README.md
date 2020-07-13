@@ -20,7 +20,7 @@ ember install ember-cli-embedded
 
 ## Configuration
 
-This plugin is opt-in; by default, it does nothing to your app unless
+This plugin is opt-in by default, it does nothing to your app unless
 you configure it.
 
 In your `config/environment.js`, add the following config to the `ENV`:
@@ -64,17 +64,17 @@ EmberObject.extend({
   embedded: service(),
 
   logSomeConfigKey() {
-    const value = this.get('embedded.myKey');
-    console.log(value);
+    const value = this.get('embedded.myKey')
+    console.log(value)
   }
-});
+})
 ```
 
 Note: It is sometimes more convenient to access the data from the container directly:
 
 ```js
 // Returns the raw config
-let embeddedConfig = Ember.getOwner(this).lookup('config:embedded');
+let embeddedConfig = Ember.getOwner(this).lookup('config:embedded')
 ```
 
 ## Override your APP configuration
@@ -89,7 +89,7 @@ Make sure that, in your `config/environment.js`, you disable the addon for the
 `test` environment, with the following:
 
 ```js
-ENV.embedded.delegateStart = false;
+ENV.embedded.delegateStart = false
 ```
 
 # Development
@@ -98,8 +98,7 @@ Installation
 ------------------------------------------------------------------------------
 
 * `git clone` this repository
-* `npm install`
-* `bower install`
+* `yarn install`
 
 ### Linting
 
