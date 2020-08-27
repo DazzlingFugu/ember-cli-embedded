@@ -1,13 +1,13 @@
-import { visit } from '@ember/test-helpers';
-import { module, test } from 'qunit';
-import { setupApplicationTest } from 'ember-qunit';
+import { visit } from '@ember/test-helpers'
+import { module, test } from 'qunit'
+import { setupApplicationTest } from 'ember-qunit'
 
 module('Acceptance | embedded app', function(hooks) {
-  setupApplicationTest(hooks);
+  setupApplicationTest(hooks)
 
   test('visiting /embedded-app', async function(assert) {
-    await visit('/');
+    await visit('/')
 
-    assert.ok(true);
-  });
-});
+    assert.ok(true)
+  })
+})
