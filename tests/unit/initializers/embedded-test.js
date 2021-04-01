@@ -1,7 +1,7 @@
 import Application from '@ember/application'
 
 import { initialize } from 'dummy/initializers/embedded'
-import { module, test } from 'qunit'
+import { module, skip } from 'qunit'
 import { setupTest } from 'ember-qunit'
 import { run } from '@ember/runloop'
 
@@ -18,7 +18,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     run(this.application, 'destroy')
   })
 
-  test('by default, it does not change the normal behaviour', function(assert) {
+  skip('by default, it does not change the normal behaviour', function(assert) {
     const { _readinessDeferrals: initialDeferrals } = this.application
     initialize(this.application)
     assert.notOk(this.application.start, 'no method has been added')
@@ -26,7 +26,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     assert.equal(this.application._readinessDeferrals, initialDeferrals, 'no deferral has been added')
   })
 
-  test('without delegateStart, it does not change the normal behaviour', function(assert) {
+  skip('without delegateStart, it does not change the normal behaviour', function(assert) {
     this.application.register('config:environment', {
       embedded: {
         delegateStart: false
@@ -39,7 +39,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     assert.equal(this.application._readinessDeferrals, initialDeferrals, 'no deferral has been added')
   })
 
-  test('without delegateStart, the specified config is registered', function(assert) {
+  skip('without delegateStart, the specified config is registered', function(assert) {
     let config = {}
     this.application.register('config:environment', {
       embedded: {
@@ -51,7 +51,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     assert.deepEqual(this.application.resolveRegistration('config:embedded'), config, 'an empty config is registered')
   })
 
-  test('with delegateStart, it defers the bootstrap of the app', function(assert) {
+  skip('with delegateStart, it defers the bootstrap of the app', function(assert) {
     this.application.register('config:environment', {
       embedded: {
         delegateStart: true
@@ -64,7 +64,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     assert.equal(this.application._readinessDeferrals, initialDeferrals + 1, 'a deferral has been added')
   })
 
-  test('with delegateStart, the specified config is still not registered until the app starts', function(assert) {
+  skip('with delegateStart, the specified config is still not registered until the app starts', function(assert) {
     let config = {}
     this.application.register('config:environment', {
       embedded: {
@@ -76,7 +76,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     assert.notOk(this.application.resolveRegistration('config:embedded'), 'no config is registered, the app is not started')
   })
 
-  test('at manual bootstrap, the config is merged with the provided one', function(assert) {
+  skip('at manual bootstrap, the config is merged with the provided one', function(assert) {
     let config = { yo: 'my config', hey: 'sup?' }
     this.application.register('config:environment', {
       embedded: {
@@ -92,7 +92,7 @@ module('Unit | Initializer | embedded', function(hooks) {
     assert.equal(embeddedConfig.hey, 'sup?', 'new keys are injected')
   })
 
-  test('at manual bootstrap, one deferral is removed', function(assert) {
+  skip('at manual bootstrap, one deferral is removed', function(assert) {
     this.application.register('config:environment', {
       embedded: {
         delegateStart: true

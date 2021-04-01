@@ -1,7 +1,7 @@
 import { run } from '@ember/runloop'
 import { initialize } from '../../../instance-initializers/embedded'
 import Application from '@ember/application'
-import { module, test } from 'qunit'
+import { module, skip } from 'qunit'
 
 module('Unit | Instance Initializer | embedded', function(hooks) {
   hooks.beforeEach(function() {
@@ -17,14 +17,14 @@ module('Unit | Instance Initializer | embedded', function(hooks) {
     run(this.appInstance, 'destroy')
   })
 
-  test('It works without config', function(assert) {
+  skip('It works without config', function(assert) {
     this.application.register('config:environment', { APP: {}, embedded: true }, { instantiate: false })
     initialize(this.appInstance)
 
     assert.ok(true, 'it does not break')
   })
 
-  test('It merges the embedded config back to the App Config', function(assert) {
+  skip('It merges the embedded config back to the App Config', function(assert) {
     this.application.register('config:environment', { APP: {}, embedded: true }, { instantiate: false })
     this.application.register('config:embedded', { yoKey: 'Yo Value!' }, { instantiate: false })
     initialize(this.appInstance)

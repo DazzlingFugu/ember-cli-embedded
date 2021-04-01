@@ -1,7 +1,7 @@
 import { run } from '@ember/runloop'
 import { get } from '@ember/object'
 import { initialize } from '../../../initializers/embedded'
-import { module, test } from 'qunit'
+import { module, skip } from 'qunit'
 import Application from '@ember/application'
 
 let application
@@ -22,7 +22,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     })
   })
 
-  test('it works without any specific config', function(assert) {
+  skip('it works without any specific config', function(assert) {
     application.register('config:environment', {})
     initialize(application)
 
@@ -30,7 +30,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     assert.ok(true)
   })
 
-  test('it does not expose when embedded config is falsy', function(assert) {
+  skip('it does not expose when embedded config is falsy', function(assert) {
     application.register('config:environment', { embedded: false })
     initialize(application)
     let embedConfig = application.resolveRegistration('config:embedded')
@@ -41,7 +41,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
 
   })
 
-  test('it defers readiness of the app', function(assert) {
+  skip('it defers readiness of the app', function(assert) {
     application.register('config:environment', { embedded: true })
     const { _readinessDeferrals:initialDeferrals } = application
     initialize(application)
@@ -49,7 +49,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     assert.equal(application._readinessDeferrals, initialDeferrals + 1, 'it added a deferral')
   })
 
-  test('it adds a start method for convenience', function(assert) {
+  skip('it adds a start method for convenience', function(assert) {
     application.register('config:environment', { embedded: { name: 'beep' } })
     initialize(application)
 
@@ -57,7 +57,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     assert.equal(typeof application.start, 'function')
   })
 
-  test('calling start allows to resume the bootstrap', function(assert) {
+  skip('calling start allows to resume the bootstrap', function(assert) {
     assert.expect(1)
     application.register('config:environment', { embedded: {} })
     initialize(application)
@@ -68,7 +68,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     assert.equal(application._readinessDeferrals, initialDeferrals - 1, 'it removed a deferral')
   })
 
-  test('The config is registered in the container', function(assert) {
+  skip('The config is registered in the container', function(assert) {
     application.register('config:environment', { embedded: {} })
     initialize(application)
     application.deferReadiness() // We make sure the all won't start
@@ -77,7 +77,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     assert.ok(application.resolveRegistration('config:embedded'))
   })
 
-  test('The config is merged', function(assert) {
+  skip('The config is merged', function(assert) {
     application.register('config:environment', { embedded: { env: 'bla' } })
     initialize(application)
     application.deferReadiness() // We make sure the all won't start
@@ -88,7 +88,7 @@ module('Unit | Initializer | [DEPRECATED] embedded', function(hooks) {
     assert.ok(get(embedConfig, 'bootstrap'))
   })
 
-  test('The config during bootstrap has a greater priority', function(assert) {
+  skip('The config during bootstrap has a greater priority', function(assert) {
     application.register('config:environment', { embedded: { woow: 'such code' } })
     initialize(application)
     application.deferReadiness() // We make sure the all won't start
