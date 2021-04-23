@@ -14,4 +14,10 @@ module.exports = {
     // therefore move the config anywhere but in the meta tag.
     this.app.options.storeConfigInMeta = false;
   },
+
+  options: {
+    babel: {
+      sourceMaps: 'inline',
+    },
+  },
 };
