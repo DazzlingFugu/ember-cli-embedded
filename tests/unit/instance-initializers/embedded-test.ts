@@ -1,34 +1,63 @@
-import { run } from '@ember/runloop'
-import { initialize } from '../../../instance-initializers/embedded'
-import Application from '@ember/application'
-import { module, test } from 'qunit'
+import Application from '@ember/application';
+
+import { initialize } from 'dummy/instance-initializers/embedded';
+import { module, test } from 'qunit';
+import Resolver from 'ember-resolver';
+import { run } from '@ember/runloop';
 
 module('Unit | Instance Initializer | embedded', function (hooks) {
   hooks.beforeEach(function () {
-    run(() => {
-      this.application = Application.create()
-      this.application.setupForTesting()
-      this.application.injectTestHelpers()
-      this.appInstance = this.application.buildInstance()
-    })
-  })
+    this.TestApplication = class TestApplication extends Application {
+      modulePrefix = 'random_value';
+    };
+
+    this.TestApplication.instanceInitializer({
+      name: 'initializer under test',
+      initialize,
+    });
+
+    this.application = this.TestApplication.create({
+      autoboot: false,
+      Resolver,
+    });
+
+    this.appInstance = this.application.buildInstance();
+  });
 
   hooks.afterEach(function () {
-    run(this.appInstance, 'destroy')
-  })
+    run(this.appInstance, 'destroy');
+    run(this.application, 'destroy');
+  });
 
-  test('It works without config', function (assert) {
-    this.application.register('config:environment', { APP: {}, embedded: true }, { instantiate: false })
-    initialize(this.appInstance)
+  test('It works without config', async function (assert) {
+    assert.expect(1);
 
-    assert.ok(true, 'it does not break')
-  })
+    this.application.register('config:environment', {
+      APP: {},
+    });
 
-  test('It merges the embedded config back to the App Config', function (assert) {
-    this.application.register('config:environment', { APP: {}, embedded: true }, { instantiate: false })
-    this.application.register('config:embedded', { yoKey: 'Yo Value!' }, { instantiate: false })
-    initialize(this.appInstance)
+    await this.appInstance.boot();
 
-    assert.equal(this.appInstance.resolveRegistration('config:environment').APP.yoKey, 'Yo Value!')
-  })
-})
+    assert.ok(true, 'It does not break');
+  });
+
+  test('It merges the embedded config into the `APP` config', async function (assert) {
+    assert.expect(1);
+
+    this.application.register('config:environment', {
+      APP: {},
+    });
+
+    this.application.register('config:embedded', {
+      yoKey: 'Yo Value!',
+    });
+
+    await this.appInstance.boot();
+
+    assert.strictEqual(
+      this.appInstance.resolveRegistration('config:environment').APP.yoKey,
+      'Yo Value!',
+      'The embedded config is melded into the `APP` config'
+    );
+  });
+});
