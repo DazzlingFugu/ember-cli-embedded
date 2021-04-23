@@ -1,13 +1,28 @@
 {
-  "name": "my-addon",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "name": "ember-cli-embedded",
+  "version": "1.0.0",
+  "description": "Control how your Ember applications boot in non-Ember pages/apps.",
+  "homepage": "https://github.com/peopledoc/ember-cli-embedded",
   "keywords": [
-    "ember-addon"
+    "ember",
+    "ember-addon",
+    "embed",
+    "embedded",
+    "typescript",
+    "boot"
   ],
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peopledoc/ember-cli-embedded"
+  },
+  "bugs": {
+    "url": "https://github.com/peopledoc/ember-cli-embedded/issues"
+  },
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "PeopleDoc",
+    "url": "https://github.com/peopledoc"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -27,7 +42,7 @@
   },
   "dependencies": {
     "ember-cli-babel": "^7.26.5",
-    "ember-cli-htmlbars": "^5.3.1"
+    "ember-cli-htmlbars": "^5.3.2"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
