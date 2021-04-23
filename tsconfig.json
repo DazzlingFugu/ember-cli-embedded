@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "alwaysStrict": true,
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "module": "es6",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noEmitOnError": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es2020",
+    "paths": {
+      "dummy/tests/*": [
+        "tests/*"
+      ],
+      "dummy/*": [
+        "app/*",
+        "tests/dummy/app/*"
+      ],
+      "ember-cli-embedded": [
+        "addon"
+      ],
+      "ember-cli-embedded/*": [
+        "addon/*"
+      ],
+      "ember-cli-embedded/test-support": [
+        "addon-test-support"
+      ],
+      "ember-cli-embedded/test-support/*": [
+        "addon-test-support/*"
+      ],
+      "*": [
+        "types/*"
+      ]
+    }
+  },
+  "include": [
+    "addon-test-support/**/*",
+    "addon/**/*",
+    "app/**/*",
+    "test-support/**/*",
+    "tests/**/*",
+    "types/**/*"
+  ]
+}
