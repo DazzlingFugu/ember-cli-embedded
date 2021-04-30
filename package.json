@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-embedded",
   "version": "1.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Control how your Ember applications boot in non-Ember pages/apps.",
   "keywords": [
     "ember-addon"
   ],
