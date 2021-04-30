@@ -10,7 +10,10 @@
     "url": "https://github.com/peopledoc/ember-cli-embedded"
   },
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "PeopleDoc",
+    "url": "https://github.com/peopledoc"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
