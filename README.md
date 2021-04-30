@@ -10,6 +10,14 @@ context-dependent config.
 
 We found it especially useful, for example, when migrating an existing app to Ember part by part.
 
+
+## Compatibility
+
+- Ember.js v3.4 or above
+- Ember CLI v2.13 or above
+- Node.js v8 or above
+
+
 # Usage
 
 ## Installation
