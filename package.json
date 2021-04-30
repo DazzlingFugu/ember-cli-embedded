@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Control how your Ember applications boot in non-Ember pages/apps.",
   "keywords": [
-    "ember-addon"
+    "ember",
+    "ember-addon",
+    "embed",
+    "embedded",
+    "typescript",
+    "boot"
   ],
   "repository": {
     "type": "git",
