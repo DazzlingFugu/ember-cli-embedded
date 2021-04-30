@@ -1,4 +1,4 @@
-# Ember-cli-embedded [![Travis build](https://api.travis-ci.org/xcambar/ember-cli-embedded.svg)](https://travis-ci.org/xcambar/ember-cli-embedded)
+# `ember-cli-embedded` [![Travis build](https://api.travis-ci.org/xcambar/ember-cli-embedded.svg)](https://travis-ci.org/xcambar/ember-cli-embedded)
 
 Makes it easier to embed your Ember application in another
 (non-Ember) app.
@@ -18,15 +18,16 @@ We found it especially useful, for example, when migrating an existing app to Em
 - Node.js v8 or above
 
 
-# Usage
+## Usage
 
-## Installation
+### Installation
 
 ```
 ember install ember-cli-embedded
 ```
 
-## Configuration
+
+### Configuration
 
 This plugin is opt-in by default, it does nothing to your app unless
 you configure it.
@@ -49,6 +50,7 @@ In your `config/environment.js`, add the following config to the `ENV`:
 until you start it. This behaviour will be removed in future versions.
 Please stick to the config format above.
 
+
 ### Start your app
 
 This addon relies on [ember-export-application-global](https://github.com/ember-cli/ember-export-application-global)
@@ -63,7 +65,8 @@ configuration as its first argument.
 Remember: Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig */)`
 method.
 
-## Access the config from your app
+
+### Access the config from your app
 
 You can inject the `embedded` service to access the config:
 
@@ -85,13 +88,15 @@ Note: It is sometimes more convenient to access the data from the container dire
 let embeddedConfig = Ember.getOwner(this).lookup('config:embedded')
 ```
 
-## Override your APP configuration
+
+### Override your `APP` configuration
 
 The passed configuration will be merged in your `APP` configuration key,
 which is very useful, for instance, if you want to change the `rootElement`
 of your application and other context-sensitive values.
 
-## Testing in Ember 3.x
+
+### Testing in Ember 3.x
 
 Make sure that, in your `config/environment.js`, you disable the addon for the
 `test` environment, with the following:
@@ -106,7 +111,6 @@ ENV.embedded.delegateStart = false
 See the [Contributing](./CONTRIBUTING.md) guide for details.
 
 
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
