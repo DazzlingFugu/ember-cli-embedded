@@ -92,30 +92,11 @@ Make sure that, in your `config/environment.js`, you disable the addon for the
 ENV.embedded.delegateStart = false
 ```
 
-# Development
 
-Installation
-------------------------------------------------------------------------------
+## Contributing
 
-* `git clone` this repository
-* `yarn install`
+See the [Contributing](./CONTRIBUTING.md) guide for details.
 
-### Linting
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-### Running tests
-
-* `ember test`
-* `ember test --server`
-
-### Running the dummy application
-
-* `ember serve`
-* Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
 
 License
 ------------------------------------------------------------------------------
