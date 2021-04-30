@@ -5,7 +5,10 @@
   "keywords": [
     "ember-addon"
   ],
-  "repository": "github:xcambar/ember-cli-embedded",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/peopledoc/ember-cli-embedded"
+  },
   "license": "MIT",
   "author": "",
   "directories": {
