@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/peopledoc/ember-cli-embedded"
   },
+  "bugs": {
+    "url": "https://github.com/peopledoc/ember-cli-embedded/issues"
+  },
   "license": "MIT",
   "author": {
     "name": "PeopleDoc",
