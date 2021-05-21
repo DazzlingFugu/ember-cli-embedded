@@ -1,15 +1,16 @@
-import ObjectProxy from '@ember/object/proxy'
-import { getOwner } from '@ember/application'
+import ObjectProxy from '@ember/object/proxy';
+import { getOwner } from '@ember/application';
 
+// eslint-disable-next-line ember/no-classic-classes
 let configService = ObjectProxy.extend({
   init() {
-    this.content = getOwner(this).factoryFor('config:embedded').class
-    this._super(...arguments)
-  }
-})
+    this.content = getOwner(this).factoryFor('config:embedded').class;
+    this._super(...arguments);
+  },
+});
 
 configService.reopenClass({
-  isServiceFactory: true
-})
+  isServiceFactory: true,
+});
 
-export default configService
+export default configService;

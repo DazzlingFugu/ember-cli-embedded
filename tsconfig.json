@@ -1,32 +1,32 @@
 {
   "compilerOptions": {
-    "target": "es2017",
     "allowJs": true,
-    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
     "alwaysStrict": true,
-    "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noEmitOnError": false,
-    "noEmit": true,
+    "baseUrl": ".",
+    "experimentalDecorators": true,
     "inlineSourceMap": true,
     "inlineSources": true,
-    "baseUrl": ".",
     "module": "es6",
-    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noEmitOnError": false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "target": "es2020",
     "paths": {
       "dummy/tests/*": [
         "tests/*"
       ],
       "dummy/*": [
-        "tests/dummy/app/*",
-        "app/*"
+        "app/*",
+        "tests/dummy/app/*"
       ],
       "ember-cli-embedded": [
         "addon"
@@ -46,11 +46,11 @@
     }
   },
   "include": [
-    "app/**/*",
+    "addon-test-support/**/*",
     "addon/**/*",
-    "tests/**/*",
-    "types/**/*",
+    "app/**/*",
     "test-support/**/*",
-    "addon-test-support/**/*"
+    "tests/**/*",
+    "types/**/*"
   ]
 }

@@ -1,1 +1,1 @@
-export { default } from 'ember-cli-embedded/services/embedded'
+export { default } from 'ember-cli-embedded/services/embedded';
