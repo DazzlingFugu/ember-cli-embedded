@@ -13,18 +13,22 @@ interface ObjectConfig {
     | Record<string, unknown>
 }
 
-type VoidConfig = null|undefined
+type VoidConfig =
+  | null
+  | undefined
+
 type DeprecatedBooleanConfig = boolean
 
-type GivenConfig = VoidConfig
+type GivenConfig =
+  | VoidConfig
   | DeprecatedBooleanConfig
   | ObjectConfig
 
-function configIsVoid(config:GivenConfig): config is VoidConfig {
+function configIsVoid(config: GivenConfig): config is VoidConfig {
   return [null, undefined].includes(config as VoidConfig)
 }
 
-function configIsBoolean(config:GivenConfig): config is DeprecatedBooleanConfig {
+function configIsBoolean(config: GivenConfig): config is DeprecatedBooleanConfig {
   return typeof config === 'boolean'
 }
 
@@ -35,7 +39,7 @@ function configIsObjectUnknown(config: ObjectConfig): config is Record<string, u
   )
 }
 
-function normalizeConfig(userConfig:GivenConfig):ObjectConfig {
+function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
   if (configIsVoid(userConfig)) {
     return {
       delegateStart: false,
@@ -45,19 +49,42 @@ function normalizeConfig(userConfig:GivenConfig):ObjectConfig {
 
   if (configIsBoolean(userConfig)) {
     const embeddedConfig = { delegateStart: userConfig, config: {} }
-    deprecate('The `embedded` config property MUST be undefined or an an object', false, { id: 'bad-object-config', until: '1.0.0' })
+    deprecate(
+      'The `embedded` config property MUST be `undefined` or an an object',
+      false,
+      {
+        id: 'bad-object-config',
+        until: '1.0.0',
+      }
+    )
+
     return embeddedConfig
   }
 
   if (configIsObjectUnknown(userConfig)) {
-    deprecate('The config MUST contain a `delegateStart` property. Assuming `true` for backward compatibility. The config must now be defined in a `config` property', false, { id: 'bad-object-config', until: '1.0.0' })
+    deprecate(
+      'The config MUST contain a `delegateStart` property. '
+      + 'Assuming `true` for backward compatibility. '
+      + 'The config must now be defined in a `config` property',
+      false,
+      {
+        id: 'bad-object-config',
+        until: '1.0.0',
+      }
+    )
+
     return {
       delegateStart: true,
       config: userConfig,
     }
   }
 
-  return Object.assign({ config: {} }, userConfig)
+  return Object.assign(
+    {
+      config: {},
+    },
+    userConfig
+  )
 }
 
 export function initialize(application: Application): void {
@@ -73,7 +100,9 @@ export function initialize(application: Application): void {
           embeddedConfig.config,
           config
         )
+
         this.register('config:embedded', _embeddedConfig, { instantiate: false })
+
         this.advanceReadiness()
       }),
     })
