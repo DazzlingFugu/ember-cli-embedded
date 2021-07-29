@@ -37,7 +37,10 @@ function configIsObjectUnknown(config: ObjectConfig): config is Record<string, u
 
 function normalizeConfig(userConfig:GivenConfig):ObjectConfig {
   if (configIsVoid(userConfig)) {
-    return { delegateStart: false, config: {} }
+    return {
+      delegateStart: false,
+      config: {},
+    }
   }
 
   if (configIsBoolean(userConfig)) {
@@ -50,7 +53,7 @@ function normalizeConfig(userConfig:GivenConfig):ObjectConfig {
     deprecate('The config MUST contain a `delegateStart` property. Assuming `true` for backward compatibility. The config must now be defined in a `config` property', false, { id: 'bad-object-config', until: '1.0.0' })
     return {
       delegateStart: true,
-      config: userConfig
+      config: userConfig,
     }
   }
 
@@ -72,7 +75,7 @@ export function initialize(application: Application): void {
         )
         this.register('config:embedded', _embeddedConfig, { instantiate: false })
         this.advanceReadiness()
-      })
+      }),
     })
     application.deferReadiness()
   } else {
@@ -83,5 +86,5 @@ export function initialize(application: Application): void {
 export default {
   name: 'ember-cli-embedded',
   after: 'export-application-global',
-  initialize
+  initialize,
 }
