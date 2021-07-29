@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-'use strict';
+'use strict'
 
-const getChannelURL = require('ember-source-channel-url');
+const getChannelURL = require('ember-source-channel-url')
 
 module.exports = async function () {
   return {
@@ -70,5 +70,5 @@ module.exports = async function () {
         },
       },
     ],
-  };
-};
+  }
+}
