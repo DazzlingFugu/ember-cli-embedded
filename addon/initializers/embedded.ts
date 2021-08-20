@@ -54,7 +54,11 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
       false,
       {
         id: 'ember-cli-embedded.bad-object-config',
-        until: '1.0.0',
+        until: 'not defined',
+        for: 'ember-cli-embedded',
+        since: {
+          enabled: '1.0.0'
+        }
       }
     )
 
@@ -69,7 +73,11 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
       false,
       {
         id: 'ember-cli-embedded.bad-object-config',
-        until: '1.0.0',
+        until: 'not defined',
+        for: 'ember-cli-embedded',
+        since: {
+          enabled: '1.0.0'
+        }
       }
     )
 
