@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 'use strict'
 
+<<<<<<< HEAD
 const EmberAddon = require('ember-cli/lib/broccoli/ember-addon')
-const { maybeEmbroider } = require('@embroider/test-setup')
+=======
+const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
+const { maybeEmbroider } = require('@embroider/test-setup');
+>>>>>>> ci: update ember-try config, add embroider test scenarios
 
 module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
@@ -16,5 +20,10 @@ module.exports = function (defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
+<<<<<<< HEAD
+  return app.toTree()
+}
+=======
   return maybeEmbroider(app);
 };
+>>>>>>> ci: update ember-try config, add embroider test scenarios

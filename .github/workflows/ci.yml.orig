@@ -171,11 +171,20 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
+<<<<<<< HEAD
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-release
+          - ember-default-with-jquery
+          - ember-classic
+=======
           - lts-3.20
           - lts-3.24
           - release
+          - beta
           - default-with-jquery
           - classic
+>>>>>>> ci: update ember-try config, add embroider test scenarios
 
     steps:
     - uses: actions/checkout@v2
