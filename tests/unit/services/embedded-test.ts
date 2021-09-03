@@ -1,16 +1,16 @@
-import { module, test } from 'qunit';
-import { setupTest } from 'ember-qunit';
+import { module, test } from 'qunit'
+import { setupTest } from 'ember-qunit'
 
 module('Unit | Service | embedded', function (hooks) {
-  setupTest(hooks);
+  setupTest(hooks)
 
   test('it fetches data from the config as a proxy', function (assert) {
     // We can access the raw config with `config:embedded`
-    let config = this.owner.resolveRegistration('config:embedded');
-    config.myKey = 'myValue';
+    const config = this.owner.resolveRegistration('config:embedded')
+    config.myKey = 'myValue'
 
-    let service = this.owner.lookup('service:embedded');
-    assert.equal(service.get('myKey'), 'myValue');
-    assert.equal(service.get('doesNotExist'), undefined);
-  });
-});
+    const service = this.owner.lookup('service:embedded')
+    assert.equal(service.get('myKey'), 'myValue')
+    assert.equal(service.get('doesNotExist'), undefined)
+  })
+})
