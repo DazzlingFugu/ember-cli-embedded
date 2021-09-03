@@ -1,6 +1,6 @@
 import EmberApplication from '@ember/application'
 import EmberObject from '@ember/object'
-import { deprecate } from '@ember/application/deprecations'
+import { deprecate } from '@ember/debug'
 import { run } from '@ember/runloop'
 import { get } from '@ember/object'
 
