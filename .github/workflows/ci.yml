@@ -18,7 +18,6 @@
 #$   - scenario: lts-3.20
 #$   - scenario: lts-3.24
 #$   - scenario: release
-#$   - scenario: beta
 #$   - scenario: default-with-jquery
 #$   - scenario: classic
 #$ nodeVersion: 12.x
