@@ -15,13 +15,11 @@
 #$ browsers:
 #$   - chrome
 #$ emberTryScenarios:
-#$   - scenario: ember-lts-3.16
-#$   - scenario: ember-lts-3.20
-#$   - scenario: ember-release
-#$   - scenario: ember-beta
-#$   - scenario: ember-canary
-#$   - scenario: ember-default-with-jquery
-#$   - scenario: ember-classic
+#$   - scenario: lts-3.20
+#$   - scenario: lts-3.24
+#$   - scenario: release
+#$   - scenario: default-with-jquery
+#$   - scenario: classic
 #$ nodeVersion: 12.x
 #$ packageManager: yarn
 #
@@ -172,11 +170,11 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-          - ember-lts-3.16
-          - ember-lts-3.20
-          - ember-release
-          - ember-default-with-jquery
-          - ember-classic
+          - lts-3.20
+          - lts-3.24
+          - release
+          - default-with-jquery
+          - classic
 
     steps:
     - uses: actions/checkout@v2
