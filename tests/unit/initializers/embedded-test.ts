@@ -5,8 +5,27 @@ import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
 import { run } from '@ember/runloop'
 
+import type { TestContext } from 'ember-test-helpers'
+
+type TestApplication = TestContext['application'] & {
+  // Public types are currently incomplete, these 2 properties exist:
+  // https://github.com/emberjs/ember.js/blob/v3.26.1/packages/@ember/application/lib/application.js#L376-L377
+  _booted: boolean
+  _readinessDeferrals: number
+}
+
+// How an app would look like with our Initializer `embedded`
+interface EmbeddedApp extends TestApplication {
+  start?: (config?: Record<string, unknown>) => void
+}
+
+interface Context {
+  TestApplication: typeof Application
+  application: EmbeddedApp
+}
+
 module('Unit | Initializer | embedded', function (hooks) {
-  hooks.beforeEach(function () {
+  hooks.beforeEach(function (this: Context) {
     this.TestApplication = class TestApplication extends Application {
       modulePrefix = 'something_random'
     }
@@ -16,6 +35,7 @@ module('Unit | Initializer | embedded', function (hooks) {
       initialize,
     })
 
+    // @ts-ignore: temporarily required as public types are incomplete
     this.application = this.TestApplication.create({
       autoboot: false,
       Resolver,
@@ -28,7 +48,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     run(this.application, 'destroy')
   })
 
-  test('by default, it does not change the normal behaviour', async function (assert) {
+  test('by default, it does not change the normal behaviour', async function (this: Context, assert) {
     assert.expect(3)
 
     await this.application.boot()
@@ -51,7 +71,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     )
   })
 
-  test('without `delegateStart`, it does not change the normal behaviour', async function (assert) {
+  test('without `delegateStart`, it does not change the normal behaviour', async function (this: Context, assert) {
     assert.expect(3)
 
     this.application.register('config:environment', {
@@ -103,7 +123,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     )
   })
 
-  test('with `delegateStart`, it defers the boot of the app', function (assert) {
+  test('with `delegateStart`, it defers the boot of the app', function (this: Context, assert) {
     assert.expect(3)
 
     this.application.register('config:environment', {
@@ -167,7 +187,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     )
   })
 
-  test('at manual boot, the passed config is merged into the embedded config', function (assert) {
+  test('at manual boot, the passed config is merged into the embedded config', function (this: Context, assert) {
     assert.expect(1)
 
     const myCustomConfig = {
@@ -188,7 +208,7 @@ module('Unit | Initializer | embedded', function (hooks) {
      */
     initialize(this.application)
 
-    this.application.start({
+    this.application.start?.({
       yay: 'one more',
       yo: 'new config',
     })
@@ -204,7 +224,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     )
   })
 
-  test('at manual boot, one deferral is removed', function (assert) {
+  test('at manual boot, one deferral is removed', function (this: Context, assert) {
     assert.expect(1)
 
     this.application.register('config:environment', {
@@ -221,7 +241,7 @@ module('Unit | Initializer | embedded', function (hooks) {
 
     const { _readinessDeferrals: initialDeferrals } = this.application
 
-    this.application.start()
+    this.application.start?.()
 
     assert.strictEqual(
       this.application._readinessDeferrals,
