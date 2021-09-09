@@ -37,17 +37,22 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
     run(this.application, 'destroy')
   })
 
-  test('It works without config', async function (this: Context, assert) {
+  test('It works when `embedded` config is not defined', async function (this: Context, assert) {
     this.application.register('config:environment', {
       APP: {},
     })
 
     await this.appInstance.boot()
 
-    assert.ok(true, 'It does not break')
+    assert.deepEqual(
+      this.appInstance.resolveRegistration('config:environment'),
+      {
+        APP: {},
+      }
+    )
   })
 
-  test('The embedded config is merged into `APP` config', async function (this: Context, assert) {
+  test('The `embedded` config is merged into `APP` config', async function (this: Context, assert) {
     this.application.register('config:environment', {
       APP: {},
     })
@@ -58,10 +63,13 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
 
     await this.appInstance.boot()
 
-    assert.strictEqual(
-      this.appInstance.resolveRegistration('config:environment').APP.yoKey,
-      'Yo Value!',
-      'The embedded config is melded into the `APP` config'
+    assert.deepEqual(
+      this.appInstance.resolveRegistration('config:environment'),
+      {
+        APP: {
+          yoKey: 'Yo Value!',
+        },
+      }
     )
   })
 })
