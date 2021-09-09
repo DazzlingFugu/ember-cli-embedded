@@ -53,7 +53,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
       'The `embedded` config property MUST be `undefined` or an an object',
       false,
       {
-        id: 'bad-object-config',
+        id: 'ember-cli-embedded.bad-object-config',
         until: '1.0.0',
       }
     )
@@ -68,7 +68,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
       + 'The config must now be defined in a `config` property',
       false,
       {
-        id: 'bad-object-config',
+        id: 'ember-cli-embedded.bad-object-config',
         until: '1.0.0',
       }
     )
