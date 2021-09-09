@@ -13,19 +13,19 @@ interface ObjectConfig {
     | Record<string, unknown>
 }
 
-type VoidConfig =
+type NullishConfig =
   | null
   | undefined
 
 type DeprecatedBooleanConfig = boolean
 
 type GivenConfig =
-  | VoidConfig
+  | NullishConfig
   | DeprecatedBooleanConfig
   | ObjectConfig
 
-function configIsVoid(config: GivenConfig): config is VoidConfig {
-  return [null, undefined].includes(config as VoidConfig)
+function configIsNullish(config: GivenConfig): config is NullishConfig {
+  return config === null || config === undefined
 }
 
 function configIsBoolean(config: GivenConfig): config is DeprecatedBooleanConfig {
@@ -40,7 +40,7 @@ function configIsObjectUnknown(config: ObjectConfig): config is Record<string, u
 }
 
 function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
-  if (configIsVoid(userConfig)) {
+  if (configIsNullish(userConfig)) {
     return {
       delegateStart: false,
       config: {},
@@ -53,7 +53,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
       'The `embedded` config property MUST be `undefined` or an an object',
       false,
       {
-        id: 'bad-object-config',
+        id: 'ember-cli-embedded.bad-object-config',
         until: '1.0.0',
       }
     )
@@ -68,7 +68,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
       + 'The config must now be defined in a `config` property',
       false,
       {
-        id: 'bad-object-config',
+        id: 'ember-cli-embedded.bad-object-config',
         until: '1.0.0',
       }
     )
