@@ -49,7 +49,7 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('by default, it does not change the normal behaviour', async function (this: Context, assert) {
-    assert.expect(3)
+    assert.expect(4)
 
     await this.application.boot()
 
@@ -65,14 +65,17 @@ module('Unit | Initializer | embedded', function (hooks) {
       'An empty embedded config is registered'
     )
 
-    assert.ok(
-      this.application._booted === true && this.application._readinessDeferrals === 0,
+    assert.true(this.application._booted, 'The app has booted')
+
+    assert.strictEqual(
+      this.application._readinessDeferrals,
+      0,
       'No deferral has been added'
     )
   })
 
   test('without `delegateStart`, it does not change the normal behaviour', async function (this: Context, assert) {
-    assert.expect(3)
+    assert.expect(4)
 
     this.application.register('config:environment', {
       embedded: {
@@ -94,8 +97,11 @@ module('Unit | Initializer | embedded', function (hooks) {
       'An empty embedded config is registered'
     )
 
-    assert.ok(
-      this.application._booted === true && this.application._readinessDeferrals === 0,
+    assert.true(this.application._booted, 'The app has booted')
+
+    assert.strictEqual(
+      this.application._readinessDeferrals,
+      0,
       'No deferral has been added'
     )
   })
@@ -124,7 +130,7 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('with `delegateStart`, it defers the boot of the app', function (this: Context, assert) {
-    assert.expect(3)
+    assert.expect(4)
 
     this.application.register('config:environment', {
       embedded: {
@@ -152,10 +158,11 @@ module('Unit | Initializer | embedded', function (hooks) {
       'The embedded config is not registered until the app is started'
     )
 
-    const { _booted, _readinessDeferrals } = this.application
+    assert.false(this.application._booted, 'The app has not booted')
 
-    assert.ok(
-      _booted === false && _readinessDeferrals === initialDeferrals + 1,
+    assert.strictEqual(
+      this.application._readinessDeferrals,
+      initialDeferrals + 1,
       'A deferral has been added'
     )
   })
