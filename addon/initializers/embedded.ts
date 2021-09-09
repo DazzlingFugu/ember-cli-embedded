@@ -13,19 +13,19 @@ interface ObjectConfig {
     | Record<string, unknown>
 }
 
-type VoidConfig =
+type NullishConfig =
   | null
   | undefined
 
 type DeprecatedBooleanConfig = boolean
 
 type GivenConfig =
-  | VoidConfig
+  | NullishConfig
   | DeprecatedBooleanConfig
   | ObjectConfig
 
-function configIsVoid(config: GivenConfig): config is VoidConfig {
-  return [null, undefined].includes(config as VoidConfig)
+function configIsNullish(config: GivenConfig): config is NullishConfig {
+  return [null, undefined].includes(config as NullishConfig)
 }
 
 function configIsBoolean(config: GivenConfig): config is DeprecatedBooleanConfig {
@@ -40,7 +40,7 @@ function configIsObjectUnknown(config: ObjectConfig): config is Record<string, u
 }
 
 function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
-  if (configIsVoid(userConfig)) {
+  if (configIsNullish(userConfig)) {
     return {
       delegateStart: false,
       config: {},
