@@ -49,8 +49,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('by default, it does not change the normal behaviour', async function (this: Context, assert) {
-    assert.expect(4)
-
     await this.application.boot()
 
     assert.strictEqual(
@@ -75,8 +73,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('without `delegateStart`, it does not change the normal behaviour', async function (this: Context, assert) {
-    assert.expect(4)
-
     this.application.register('config:environment', {
       embedded: {
         delegateStart: false,
@@ -107,8 +103,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('without `delegateStart`, the specified config is registered', async function (assert) {
-    assert.expect(1)
-
     const myCustomConfig = {
       donald: 'duck',
     }
@@ -130,8 +124,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('with `delegateStart`, it defers the boot of the app', function (this: Context, assert) {
-    assert.expect(4)
-
     this.application.register('config:environment', {
       embedded: {
         delegateStart: true,
@@ -168,8 +160,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('with `delegateStart`, the passed config is not registered until the app is started', function (assert) {
-    assert.expect(1)
-
     const myCustomConfig = {
       donald: 'duck',
     }
@@ -195,8 +185,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('at manual boot, the passed config is merged into the embedded config', function (this: Context, assert) {
-    assert.expect(1)
-
     const myCustomConfig = {
       yo: 'my config',
       hey: 'sup?',
@@ -232,8 +220,6 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   test('at manual boot, one deferral is removed', function (this: Context, assert) {
-    assert.expect(1)
-
     this.application.register('config:environment', {
       embedded: {
         delegateStart: true,

@@ -38,8 +38,6 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
   })
 
   test('It works without config', async function (this: Context, assert) {
-    assert.expect(1)
-
     this.application.register('config:environment', {
       APP: {},
     })
@@ -50,8 +48,6 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
   })
 
   test('The embedded config is merged into `APP` config', async function (this: Context, assert) {
-    assert.expect(1)
-
     this.application.register('config:environment', {
       APP: {},
     })
