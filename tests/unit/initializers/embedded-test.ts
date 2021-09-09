@@ -144,12 +144,6 @@ module('Unit | Initializer | embedded', function (hooks) {
       'A `start()` method has been added'
     )
 
-    assert.deepEqual(
-      this.application.resolveRegistration('config:embedded'),
-      undefined,
-      'The embedded config is not registered until the app is started'
-    )
-
     assert.false(this.application._booted, 'The app has not booted')
 
     assert.strictEqual(
