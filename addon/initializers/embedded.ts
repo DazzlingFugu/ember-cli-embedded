@@ -25,7 +25,7 @@ type GivenConfig =
   | ObjectConfig
 
 function configIsNullish(config: GivenConfig): config is NullishConfig {
-  return [null, undefined].includes(config as NullishConfig)
+  return config === null || config === undefined
 }
 
 function configIsBoolean(config: GivenConfig): config is DeprecatedBooleanConfig {
