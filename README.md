@@ -35,15 +35,16 @@ This plugin is opt-in by default, it does nothing to your app unless you configu
 In your `config/environment.js`, add the following config to the `ENV`:
 
 ```js
-  modulePrefix: 'my-app' // name of your application
-  exportApplicationGlobal: true, // exposes your application in production builds
-  ...
-  embedded: {
-    delegateStart: true,
-    config: { // `config` is optional
-      // Default values for the config passed at boot
-    }
-  }
+  let ENV = {
+    ...
+    embedded: {
+      delegateStart: true,
+      config: { // optional
+        // Default values for the config passed at boot
+      },
+    },
+    ...
+  };
 ```
 
 > For compatibility reasons, as long as the value for `embedded` is truthy, your app will hold until
@@ -64,26 +65,63 @@ Remember:
 Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig */)` method.
 
 
-### Access the config from your app
+### Access the config from your application
 
-You can inject the `embedded` service to access the config:
+#### Via the Service `embedded`
+
+Consider the following `config/environment.js` file:
 
 ```js
-EmberObject.extend({
-  embedded: service(),
-
-  logSomeConfigKey() {
-    const value = this.get('embedded.myKey')
-    console.log(value)
-  }
-})
+  let ENV = {
+    ...
+    embedded: {
+      config: {
+        option1: 'value-1',
+      },
+    },
+    ...
+  };
 ```
 
-Note: It is sometimes more convenient to access the data from the container directly:
+And the application is started that way:
 
 ```js
+<script>
+  MyApp.start({ option2: 'value-2' });
+</script>
+```
+
+Then in your Services, Components, Controllers...
+
+```js
+class MyService extends Service {
+  @service embedded;
+
+  @action
+  logSomeConfigKey() {
+    // Will log 'value-1'
+    console.log(this.embedded.option1);
+  }
+}
+```
+
+
+#### Via the container itself
+
+Sometimes it can be more convenient to access the data directly from the container.
+
+Following the previous example:
+
+```js
+import { getOwner } from '@ember/application';
+
+...
+
 // Returns the raw config
-let embeddedConfig = Ember.getOwner(this).lookup('config:embedded')
+let embeddedConfig = getOwner(this).lookup('config:embedded');
+
+// Will log 'value-2'
+console.log(embeddedConfig.option2);
 ```
 
 
