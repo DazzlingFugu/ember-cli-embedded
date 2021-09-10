@@ -177,13 +177,19 @@ assert.deepEqual(
 ```
 
 
-### Testing in Ember 3.x
+### About the test environment
 
-Make sure that, in your `config/environment.js`, you disable the addon for the `test` environment,
-with the following:
+In your tests suite, you will probably want to let your application start automatically without this
+addon interfering.
+
+To do that, make sure to disable the addon for the `test` environment:
 
 ```js
-ENV.embedded.delegateStart = false
+// file `config/environment.js`
+
+if (environment === 'test') {
+  ENV.embedded.delegateStart = false;
+}
 ```
 
 
