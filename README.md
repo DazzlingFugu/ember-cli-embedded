@@ -55,8 +55,7 @@ In your `config/environment.js`, add the following config to the `ENV`:
 ### Start your app
 
 This addon relies on [ember-export-application-global](https://github.com/ember-cli/ember-export-application-global)
-to expose a global variable. By default, it exposes your app under its capitalized name, 
-_eg._ `MyApp`. See its documentation for more information.
+to get your application globally exposed. See its documentation for more information.
 
 In your JS code, just execute `MyApp.start(/* optionalConfig */)` to resume the boot of your 
 application. As per the example, it takes an optional configuration as its first argument.
