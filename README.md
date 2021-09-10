@@ -126,9 +126,55 @@ console.log(embeddedConfig.option2);
 
 ### Override your `APP` configuration
 
-The passed configuration will be merged in your `APP` configuration key, which is very useful, for
+The startup object will be merged into your `APP` configuration key, which is very useful, for 
 instance, if you want to change the `rootElement` of your application and other context-sensitive
 values.
+
+Consider the following `config/environment.js` file:
+
+```js
+  let ENV = {
+    APP: {
+      rootElement: `#some-element`,
+    },
+
+    embedded: {
+      config: {
+        option1: 'value-1',
+      },
+    },
+  };
+```
+
+And the application is started that way:
+
+```js
+<script>
+  MyApp.start({ option2: 'value-2' });
+</script>
+```
+
+This would result in:
+
+```js
+import APP_ENV_CONFIG from 'my-app/config/environment'
+
+assert.deepEqual(
+  APP_ENV_CONFIG,
+  {
+    APP: {
+      option2: 'value-2',
+      rootElement: `#some-element`,
+    },
+
+    embedded: {
+      config: {
+        option1: 'value-1',
+      },
+    },
+  }
+);
+```
 
 
 ### Testing in Ember 3.x
