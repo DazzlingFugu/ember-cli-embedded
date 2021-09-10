@@ -47,8 +47,10 @@ In your `config/environment.js`, add the following config to the `ENV`:
   };
 ```
 
-> For compatibility reasons, as long as the value for `embedded` is truthy, your app will hold until
-> you start it. This behaviour will be removed in future versions.  
+Doing so will make your application hold, until your manually start it. (read on to lear more)
+
+> For compatibility reasons, this behaviour will work as long as the value of `embedded` is truthy
+> but we plan to remove it in a future version.  
 > Please stick to the config format above.
 
 
