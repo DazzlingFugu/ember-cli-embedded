@@ -23,7 +23,7 @@ We found it especially useful, for example, when migrating an existing app to Em
 
 ### Installation
 
-```
+```console
 ember install ember-cli-embedded
 ```
 
@@ -68,7 +68,7 @@ Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig *
 
 You can inject the `embedded` service to access the config:
 
-```
+```js
 EmberObject.extend({
   embedded: service(),
 
