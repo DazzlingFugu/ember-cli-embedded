@@ -1,6 +1,6 @@
 import Application from '@ember/application'
 import { deprecate } from '@ember/debug'
-import { run } from '@ember/runloop'
+// import { run } from '@ember/runloop'
 
 interface ObjectConfig {
   delegateStart?:
@@ -88,27 +88,35 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
 }
 
 export function initialize(application: Application): void {
+  console.log('embedded - initialize()')
+
+  // const env = application.resolveRegistration('config:environment')
+  // const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
   const env = application.resolveRegistration('config:environment')
-  const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
+  const embeddedConfig = env?.embedded
+  console.log('embedded env', env)
 
   if (embeddedConfig.delegateStart) {
     // @ts-ignore: until correct public types are available
     application.reopen({
-      start: run.bind(application, function emberCliEmbeddedStart(config = {}) {
-        const _embeddedConfig = Object.assign(
-          {},
-          embeddedConfig.config,
-          config
-        )
+      // start: run.bind(application, function emberCliEmbeddedStart(config = {}) {
+      //   const _embeddedConfig = Object.assign(
+      //     {},
+      //     embeddedConfig.config,
+      //     config
+      //   )
 
-        this.register('config:embedded', _embeddedConfig, { instantiate: false })
+      //   this.register('config:embedded', _embeddedConfig, { instantiate: false })
 
-        this.advanceReadiness()
-      }),
+      //   this.advanceReadiness()
+      // }),
+
+      start: () => console.log('embedded - `App.start()` has been called')
     })
-    application.deferReadiness()
+    // application.deferReadiness()
   } else {
     application.register('config:embedded', embeddedConfig.config)
+    console.log('embedded - branch `else`')
   }
 }
 
