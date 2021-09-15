@@ -59,8 +59,8 @@ jobs:
         path: |
           ${{ steps.global-cache-dir-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock' ) }}
-        restore-keys: ${{ runner.os }}-${{ matrix.node-version }}-
+        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/yarn.lock' ) }}
+        restore-keys: ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
     - name: Install Dependencies
       run: yarn install --frozen-lockfile
@@ -99,8 +99,8 @@ jobs:
         path: |
           ${{ steps.global-cache-dir-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock' ) }}
-        restore-keys: ${{ runner.os }}-${{ matrix.node-version }}-
+        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/yarn.lock' ) }}
+        restore-keys: ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
     - name: Install Dependencies
       run: yarn install --frozen-lockfile
@@ -139,8 +139,8 @@ jobs:
         path: |
           ${{ steps.global-cache-dir-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-floating-deps
-        restore-keys: ${{ runner.os }}-${{ matrix.node-version }}-
+        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-floating-deps
+        restore-keys: ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
     - name: Install Dependencies
       run: yarn install --no-lockfile --non-interactive
@@ -184,8 +184,8 @@ jobs:
         path: |
           ${{ steps.global-cache-dir-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock' ) }}
-        restore-keys: ${{ runner.os }}-${{ matrix.node-version }}-
+        key: ${{ runner.os }}-${{ env.NODE_VERSION }}-${{ hashFiles('**/yarn.lock' ) }}
+        restore-keys: ${{ runner.os }}-${{ env.NODE_VERSION }}-
 
     - name: Install Dependencies
       run: yarn install --frozen-lockfile
