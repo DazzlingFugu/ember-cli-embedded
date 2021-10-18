@@ -2,21 +2,24 @@ import ObjectProxy from '@ember/object/proxy'
 import { getOwner } from '@ember/application'
 import { assert } from '@ember/debug'
 
-export default class EmbeddedService extends ObjectProxy {
+type AnyObject = Record<string, unknown>
+
+export default class EmbeddedService<
+  EmbeddedOptions extends AnyObject = AnyObject
+> extends ObjectProxy<EmbeddedOptions> {
 
   constructor() {
     super(...arguments) // eslint-disable-line prefer-rest-params
 
     const factoryName = 'config:embedded'
-    const factory: Record<string, unknown> | undefined = getOwner(this).factoryFor(factoryName)
+    const factory: { class: EmbeddedOptions } | undefined = getOwner(this).factoryFor(factoryName)
 
     assert(
       `The factory "${factoryName}" could not be found.`,
       typeof factory === 'object'
     )
 
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    this.content = factory.class as object
+    this.content = factory.class
   }
 
 }
