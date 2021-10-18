@@ -5,12 +5,20 @@ module('Unit | Service | embedded', function (hooks) {
   setupTest(hooks)
 
   test('it fetches data from the config as a proxy', function (assert) {
-    // We can access the raw config with `config:embedded`
-    const config = this.owner.resolveRegistration('config:embedded')
-    config.myKey = 'myValue'
+    this.owner.register('config:embedded', {
+      myKey: 'myValue',
+    })
 
     const service = this.owner.lookup('service:embedded')
-    assert.equal(service.get('myKey'), 'myValue')
-    assert.equal(service.get('doesNotExist'), undefined)
+
+    assert.strictEqual(
+      service.get('myKey'),
+      'myValue'
+    )
+
+    assert.strictEqual(
+      service.get('doesNotExist'),
+      undefined
+    )
   })
 })
