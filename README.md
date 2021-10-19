@@ -195,6 +195,54 @@ if (environment === 'test') {
 ```
 
 
+### TypeScript support
+
+If your consuming application relies TypeScript, you can make you life a bit easier by using the
+included types:
+
+**File `/types/my-project/index.d.ts`**
+
+```ts
+import type BaseEmbeddedService from 'ember-cli-embedded/services/embedded';
+
+declare global {
+
+  type EmbeddedService = BaseEmbeddedService<{
+    one: string;
+    two?: string;
+  }>;
+
+}
+
+export {};
+```
+
+**File `/app/components/my-component.ts`**
+
+```ts
+import Component from '@glimmer/component';
+import { inject as service } from '@ember/service';
+
+export default class MyComponent extends Component {
+  /**
+   * To know why the modifier `declare` should be used when injecting a Service:
+   * https://github.com/typed-ember/ember-cli-typescript/issues/1406#issuecomment-778660505
+   */
+  @service
+  declare embedded: EmbeddedService;
+
+  get one() { // Return type inferred: `string | undefined`
+    return this.embedded.get('one');
+  }
+
+  get two() {
+    // TypeScript returns an error as `twoo` is not a recognised key
+    return this.embedded.get('twoo');
+  }
+}
+```
+
+
 ## Contributing
 
 See the [Contributing](./CONTRIBUTING.md) guide for details.

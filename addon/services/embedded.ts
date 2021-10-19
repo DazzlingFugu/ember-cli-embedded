@@ -1,16 +1,32 @@
 import ObjectProxy from '@ember/object/proxy'
 import { getOwner } from '@ember/application'
+import { assert } from '@ember/debug'
 
-// eslint-disable-next-line ember/no-classic-classes
-const configService = ObjectProxy.extend({
-  init(...args: Array<Record<string, unknown>>): void {
-    this.content = getOwner(this).factoryFor('config:embedded').class
-    this._super(...args)
-  },
-})
+type AnyObject = Record<string, unknown>
 
-configService.reopenClass({
-  isServiceFactory: true,
-})
+export default class EmbeddedService<
+  EmbeddedOptions extends AnyObject = AnyObject
+> extends ObjectProxy<EmbeddedOptions> {
 
-export default configService
+  constructor() {
+    super(...arguments) // eslint-disable-line prefer-rest-params
+
+    const factoryName = 'config:embedded'
+    const factory: { class: EmbeddedOptions } | undefined = getOwner(this).factoryFor(factoryName)
+
+    assert(
+      `The factory "${factoryName}" could not be found.`,
+      typeof factory === 'object'
+    )
+
+    this.content = factory.class
+  }
+
+}
+
+// DO NOT DELETE: this is how TypeScript knows how to look up your services.
+declare module '@ember/service' {
+  interface Registry {
+    embedded: EmbeddedService;
+  }
+}
