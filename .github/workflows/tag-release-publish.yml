@@ -1,0 +1,69 @@
+# GitHub Actions workflows:
+# https://docs.github.com/en/actions
+
+name: Create new `git tag`, create new GitHub release and publish to NPM
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  create-git-tag:
+    name: Create new `git tag`
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      new-tag: ${{ steps.detect-and-tag-new-version.outputs.tag }}
+      new-version: ${{ steps.detect-and-tag-new-version.outputs.current-version }}
+      old-version: ${{ steps.detect-and-tag-new-version.outputs.previous-version }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # Required to ensure git history is properly checked:
+          # https://github.com/salsify/action-detect-and-tag-new-version/blob/v2.0.1/README.md?plain=1#L11
+          fetch-depth: 2
+
+      - name: Detect and tag new version
+        id: detect-and-tag-new-version
+        uses: salsify/action-detect-and-tag-new-version@v2
+
+  create-github-release:
+    if: ${{ needs.create-git-tag.outputs.new-tag }}
+    name: Create new GitHub release
+    needs: create-git-tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: ncipollo/release-action@v1
+        env:
+          REPO_URL: '${{ github.server_url }}/${{ github.repository }}'
+          TAGS_DIFF: 'v${{ needs.create-git-tag.outputs.new-version }}...v${{ needs.create-git-tag.outputs.old-version }}'
+        with:
+          body: '${{ env.REPO_URL }}/compare/${{ env.TAGS_DIFF }}'
+          name: Release ${{ needs.create-git-tag.outputs.new-tag }}
+          tag: ${{ needs.create-git-tag.outputs.new-tag }}
+
+  publish-npm:
+    if: ${{ needs.create-git-tag.outputs.new-tag }}
+    name: Publish to NPM
+    needs: create-git-tag
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          # Required if we want to authenticate during the `npm publish`:
+          # https://github.com/actions/setup-node/blob/v2.4.1/action.yml#L15-L16
+          registry-url: https://registry.npmjs.org
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
