@@ -40,7 +40,7 @@ jobs:
           REPO_URL: '${{ github.server_url }}/${{ github.repository }}'
           TAGS_DIFF: 'v${{ needs.create-git-tag.outputs.old-version }}...v${{ needs.create-git-tag.outputs.new-version }}'
         with:
-          body: '${{ env.REPO_URL }}/compare/${{ env.TAGS_DIFF }}'
+          body: 'Changelog: ${{ env.REPO_URL }}/compare/${{ env.TAGS_DIFF }}'
           name: Release ${{ needs.create-git-tag.outputs.new-tag }}
           tag: ${{ needs.create-git-tag.outputs.new-tag }}
 
