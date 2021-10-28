@@ -27,6 +27,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: yarn
 
+      # https://github.com/lirantal/lockfile-lint
+      - name: Lint lockfile
+        run: npx lockfile-lint --path yarn.lock --allowed-hosts npm yarn --validate-https
+
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
 
