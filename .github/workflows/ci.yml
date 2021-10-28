@@ -29,7 +29,7 @@ jobs:
 
       # https://github.com/lirantal/lockfile-lint
       - name: Lint lockfile
-        run: npx lockfile-lint --path yarn.lock --allowed-hosts  yarn --validate-https
+        run: npx lockfile-lint --path yarn.lock --allowed-hosts npm yarn --validate-https
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile
