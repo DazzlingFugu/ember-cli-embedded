@@ -1,96 +1,17 @@
+# GitHub Actions documentation:
+# https://docs.github.com/en/actions
+
 name: CI
 
 on:
   push:
-    branches:
-      - master
+    branches: master
   pull_request: {}
-
-env:
-  NODE_VERSION: 12
 
 concurrency:
   group: ci-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  test:
-    name: Tests
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
-
-      # https://github.com/lirantal/lockfile-lint
-      - name: Lint lockfile
-        run: >
-          npm_config_yes=true npx lockfile-lint
-          --path yarn.lock
-          --allowed-hosts npm yarn
-          --validate-https
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Lint
-        run: yarn run lint
-
-      - name: Run Tests
-        run: yarn run test:ember
-
-  floating:
-    name: Floating Dependencies
-    needs: test
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
-
-      - name: Install Dependencies
-        run: yarn install --no-lockfile --non-interactive
-
-      - name: Run Tests
-        run: yarn run test:ember
-
-  try-scenarios:
-    name: ${{ matrix.try-scenario }}
-    needs: test
-    runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        try-scenario:
-          - ember-lts-3.16
-          - ember-lts-3.20
-          - ember-release
-          - ember-classic
-          - ember-default-with-jquery
-          - embroider-safe
-          - embroider-optimized
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Install Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: yarn
-
-      - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Run Tests
-        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
+  org:
+    uses: peopledoc/.github/.github/workflows/js--emberjs-addons-ci.yml@main
