@@ -1,7 +1,7 @@
 {
   "name": "ember-cli-embedded",
   "version": "2.3.1",
-  "description": "Control how your Ember applications boot in non-Ember pages/apps.",
+  "description": "Control how your Ember applications boots in non-Ember pages/apps.",
   "homepage": "https://github.com/peopledoc/ember-cli-embedded",
   "keywords": [
     "ember",
