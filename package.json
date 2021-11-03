@@ -1,8 +1,15 @@
 {
   "name": "ember-cli-embedded",
-  "version": "2.3.1",
   "description": "Control how your Ember applications boots in non-Ember pages/apps.",
+  "version": "2.3.1",
+  "license": "MIT",
+  "author": {
+    "name": "PeopleDoc",
+    "url": "https://github.com/peopledoc"
+  },
   "homepage": "https://github.com/peopledoc/ember-cli-embedded",
+  "repository": "https://github.com/peopledoc/ember-cli-embedded",
+  "bugs": "https://github.com/peopledoc/ember-cli-embedded/issues",
   "keywords": [
     "ember",
     "ember-addon",
@@ -11,13 +18,6 @@
     "typescript",
     "boot"
   ],
-  "repository": "https://github.com/peopledoc/ember-cli-embedded",
-  "bugs": "https://github.com/peopledoc/ember-cli-embedded/issues",
-  "license": "MIT",
-  "author": {
-    "name": "PeopleDoc",
-    "url": "https://github.com/peopledoc"
-  },
   "files": [
     "/addon",
     "/app",
