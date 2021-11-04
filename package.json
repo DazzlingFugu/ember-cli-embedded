@@ -42,7 +42,8 @@
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each",
     "prepack": "ember ts:precompile",
-    "postpack": "ember ts:clean"
+    "postpack": "ember ts:clean",
+    "contributors": "contributor-faces -e \"(*-bot|*\\[bot\\])\""
   },
   "dependencies": {
     "ember-cli-babel": "^7.26.6",
@@ -65,6 +66,7 @@
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "babel-eslint": "^10.1.0",
+    "contributor-faces": "^1.1.0",
     "ember-auto-import": "^1.11.3",
     "ember-cli": "~3.28.3",
     "ember-cli-dependency-checker": "^3.2.0",

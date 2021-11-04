@@ -247,6 +247,21 @@ export default class MyComponent extends Component {
 
 See the [Contributing](./CONTRIBUTING.md) guide for details.
 
+## Contributors ✨
+
+[//]: contributor-faces
+<a href="https://github.com/MrChocolatine"><img src="https://avatars.githubusercontent.com/u/47531779?v=4" title="MrChocolatine" width="80" height="80"></a>
+<a href="https://github.com/xcambar"><img src="https://avatars.githubusercontent.com/u/657654?v=4" title="xcambar" width="80" height="80"></a>
+<a href="https://github.com/GreatWizard"><img src="https://avatars.githubusercontent.com/u/1322081?v=4" title="GreatWizard" width="80" height="80"></a>
+<a href="https://github.com/yonmey"><img src="https://avatars.githubusercontent.com/u/3025706?v=4" title="yonmey" width="80" height="80"></a>
+<a href="https://github.com/jacky-peopledoc"><img src="https://avatars.githubusercontent.com/u/45593806?v=4" title="jacky-peopledoc" width="80" height="80"></a>
+<a href="https://github.com/romgere"><img src="https://avatars.githubusercontent.com/u/13900970?v=4" title="romgere" width="80" height="80"></a>
+<a href="https://github.com/cah-danmonroe"><img src="https://avatars.githubusercontent.com/u/11519684?v=4" title="cah-danmonroe" width="80" height="80"></a>
+<a href="https://github.com/saintsebastian"><img src="https://avatars.githubusercontent.com/u/8288415?v=4" title="saintsebastian" width="80" height="80"></a>
+<a href="https://github.com/ewjoachim"><img src="https://avatars.githubusercontent.com/u/1457576?v=4" title="ewjoachim" width="80" height="80"></a>
+<a href="https://github.com/BlueCutOfficial"><img src="https://avatars.githubusercontent.com/u/22059380?v=4" title="BlueCutOfficial" width="80" height="80"></a>
+
+[//]: contributor-faces
 
 ## License
 
