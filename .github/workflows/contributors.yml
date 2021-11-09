@@ -14,4 +14,4 @@ concurrency:
 
 jobs:
   org:
-    uses: peopledoc/.github/.github/workflows/auto-update-list-contributors.yml@add-workflow-auto-update-list-contributors
+    uses: peopledoc/.github/.github/workflows/auto-update-list-contributors.yml@main
