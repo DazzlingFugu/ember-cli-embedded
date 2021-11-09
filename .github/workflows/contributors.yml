@@ -1,0 +1,17 @@
+# GitHub Actions documentation:
+# https://docs.github.com/en/actions
+
+name: Auto-update list of contributors
+
+on:
+  push:
+    branches: master
+  workflow_dispatch:
+
+concurrency:
+  group: update-list-contributors-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  org:
+    uses: peopledoc/.github/.github/workflows/auto-update-list-contributors.yml@main
