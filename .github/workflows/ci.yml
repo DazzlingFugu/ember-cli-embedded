@@ -14,4 +14,4 @@ concurrency:
 
 jobs:
   org:
-    uses: peopledoc/.github/.github/workflows/js--emberjs-addons-ci.yml@main
+    uses: peopledoc/.github/.github/workflows/js--emberjs-addons-ci.yml@add-ember-tests-beta-canary
