@@ -12,7 +12,9 @@ export default class EmbeddedService<
     super(...arguments) // eslint-disable-line prefer-rest-params
 
     const factoryName = 'config:embedded'
-    const factory: { class: EmbeddedOptions } | undefined = getOwner(this).factoryFor(factoryName)
+    // TODO refactor once https://github.com/emberjs/ember.js/issues/19916 fixed
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    const factory: { class: EmbeddedOptions } | undefined = (getOwner(this) as any).factoryFor(factoryName)
 
     assert(
       `The factory "${factoryName}" could not be found.`,

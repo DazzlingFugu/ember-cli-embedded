@@ -5,11 +5,12 @@ import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
 import { run } from '@ember/runloop'
 
-import type { TestContext } from 'ember-test-helpers'
+import type { TestContext } from '@ember/test-helpers'
 import type ApplicationInstance from '@ember/application/instance'
 
 interface Context extends TestContext {
   TestApplication: typeof Application
+  application: Application
   appInstance: ApplicationInstance
 }
 
