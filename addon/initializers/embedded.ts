@@ -1,6 +1,5 @@
 import Application from '@ember/application'
 import { deprecate } from '@ember/debug'
-import { run } from '@ember/runloop'
 
 interface ObjectConfig {
   delegateStart?:
@@ -102,7 +101,7 @@ export function initialize(application: Application): void {
   if (embeddedConfig.delegateStart) {
     // @ts-ignore: until correct public types are available
     application.reopen({
-      start: run.bind(application, function emberCliEmbeddedStart(config = {}) {
+      start: function emberCliEmbeddedStart(this: Application, config = {}) {
         const _embeddedConfig = Object.assign(
           {},
           embeddedConfig.config,
@@ -112,9 +111,11 @@ export function initialize(application: Application): void {
         this.register('config:embedded', _embeddedConfig, { instantiate: false })
 
         this.advanceReadiness()
-      }),
+      }.bind(application),
     })
+
     application.deferReadiness()
+
   } else {
     application.register('config:embedded', embeddedConfig.config)
   }

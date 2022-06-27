@@ -10,7 +10,7 @@
     "module": "es6",
     "moduleResolution": "node",
     "noEmit": true,
-    "noEmitOnError": true,
+    // "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
