@@ -55,6 +55,7 @@
     "@embroider/test-setup": "^0.47.0",
     "@types/ember-qunit": "^5.0.0",
     "@types/ember-resolver": "^5.0.11",
+    "@types/ember": "^4.0.0",
     "@types/ember__application": "^4.0.0",
     "@types/ember__array": "^4.0.1",
     "@types/ember__component": "^4.0.8",
