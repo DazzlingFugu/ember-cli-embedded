@@ -310,13 +310,6 @@ See the [Contributing](./CONTRIBUTING.md) guide for details.
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/ewjoachim">
-            <img src="https://avatars.githubusercontent.com/u/1457576?v=4" width="100;" alt="ewjoachim"/>
-            <br />
-            <sub><b>ewjoachim</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/BlueCutOfficial">
             <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
             <br />
