@@ -1,5 +1,6 @@
 import { module, test } from 'qunit'
 import { setupTest } from 'ember-qunit'
+import EmbeddedService from 'ember-cli-embedded/services/embedded'
 
 module('Unit | Service | embedded', function (hooks) {
   setupTest(hooks)
@@ -9,7 +10,7 @@ module('Unit | Service | embedded', function (hooks) {
       myKey: 'myValue',
     })
 
-    const service = this.owner.lookup('service:embedded')
+    const service = this.owner.lookup('service:embedded') as EmbeddedService
 
     assert.strictEqual(
       service.get('myKey'),
