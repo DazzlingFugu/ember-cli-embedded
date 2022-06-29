@@ -5,7 +5,8 @@ name: CI
 
 on:
   push:
-    branches: master
+    branches:
+      - master
   pull_request: {}
 
 concurrency:
@@ -14,4 +15,17 @@ concurrency:
 
 jobs:
   org:
-    uses: peopledoc/.github/.github/workflows/js--emberjs-addons-ci.yml@main
+    uses: DazzlingFugu/.github/.github/workflows/js--emberjs-addons.yml@master
+    with:
+      node-version: 12
+      package-manager: yarn
+      ember-try-scenarios: "[
+          'ember-lts-3.20',
+          'ember-lts-3.24',
+          'ember-release',
+          'ember-beta',
+          'ember-canary',
+          'ember-classic',
+          'embroider-safe',
+          'embroider-optimized',
+        ]"

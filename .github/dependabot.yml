@@ -24,7 +24,7 @@ updates:
 
     # Metadata of pull requests
     reviewers:
-      - "peopledoc/tribe-js"
+      - "DazzlingFugu/emberenos"
 
     # Control which dependencies are updated
     ignore:

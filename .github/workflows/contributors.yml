@@ -5,7 +5,8 @@ name: Auto-update list of contributors
 
 on:
   push:
-    branches: master
+    branches:
+      - master
   workflow_dispatch:
 
 concurrency:
@@ -14,4 +15,4 @@ concurrency:
 
 jobs:
   org:
-    uses: peopledoc/.github/.github/workflows/auto-update-list-contributors.yml@main
+    uses: DazzlingFugu/.github/.github/workflows/auto-update-list-contributors.yml@master

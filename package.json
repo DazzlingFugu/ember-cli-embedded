@@ -4,12 +4,12 @@
   "version": "2.5.0",
   "license": "MIT",
   "author": {
-    "name": "PeopleDoc",
-    "url": "https://github.com/peopledoc"
+    "name": "Dazzling Fugu",
+    "url": "https://github.com/DazzlingFugu"
   },
-  "homepage": "https://github.com/peopledoc/ember-cli-embedded",
-  "repository": "https://github.com/peopledoc/ember-cli-embedded",
-  "bugs": "https://github.com/peopledoc/ember-cli-embedded/issues",
+  "homepage": "https://github.com/DazzlingFugu/ember-cli-embedded",
+  "repository": "https://github.com/DazzlingFugu/ember-cli-embedded",
+  "bugs": "https://github.com/DazzlingFugu/ember-cli-embedded/issues",
   "keywords": [
     "ember",
     "ember-addon",

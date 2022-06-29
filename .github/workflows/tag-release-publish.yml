@@ -5,9 +5,12 @@ name: Create new `git tag`, create new GitHub release and publish to NPM
 
 on:
   workflow_run:
-    workflows: CI
-    branches: master
-    types: completed
+    workflows:
+      - CI
+    branches:
+      - master
+    types:
+      - completed
 
 concurrency:
   group: tag-release-publish-${{ github.ref }}
@@ -16,6 +19,9 @@ concurrency:
 jobs:
   org:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    uses: peopledoc/.github/.github/workflows/js--tag-release-publish.yml@main
+    uses: DazzlingFugu/.github/.github/workflows/js--tag-release-publish.yml@master
+    with:
+      node-version: 12
+      package-manager: yarn
     secrets:
-      npm_automation_token: ${{ secrets.NPM_AUTOMATION_TOKEN }}
+      npm-automation-token: ${{ secrets.NPM_AUTOMATION_TOKEN }}

@@ -1,6 +1,6 @@
 # ember-cli-embedded
 
-[![CI](https://github.com/peopledoc/ember-cli-embedded/actions/workflows/ci.yml/badge.svg)](https://github.com/peopledoc/ember-cli-embedded/actions/workflows/ci.yml) [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-embedded.svg)](https://emberobserver.com/addons/ember-cli-embedded)
+[![CI](https://github.com/DazzlingFugu/ember-cli-embedded/actions/workflows/ci.yml/badge.svg)](https://github.com/DazzlingFugu/ember-cli-embedded/actions/workflows/ci.yml) [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-embedded.svg)](https://emberobserver.com/addons/ember-cli-embedded)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
