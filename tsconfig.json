@@ -65,6 +65,24 @@
     // layout, which is not resolveable with the Node resolution algorithm, to
     // work with TypeScript.
     "baseUrl": ".",
+
+    // https://www.typescriptlang.org/tsconfig#forceConsistentCasingInFileNames
+    "forceConsistentCasingInFileNames": true,
+
+    // https://www.typescriptlang.org/tsconfig#noFallthroughCasesInSwitch
+    "noFallthroughCasesInSwitch": true,
+
+    // https://www.typescriptlang.org/tsconfig#noImplicitOverride
+    "noImplicitOverride": true,
+
+    // https://www.typescriptlang.org/tsconfig#noImplicitReturns
+    "noImplicitReturns": true,
+
+    // https://www.typescriptlang.org/tsconfig#noUnusedLocals
+    "noUnusedLocals": true,
+
+    // https://www.typescriptlang.org/tsconfig#noUnusedParameters
+    "noUnusedParameters": true,
     "paths": {
       "dummy/tests/*": [
         "tests/*"
