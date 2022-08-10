@@ -1,6 +1,7 @@
 import { module, test } from 'qunit'
 import { setupTest } from 'ember-qunit'
-import EmbeddedService from 'ember-cli-embedded/services/embedded'
+
+import type EmbeddedService from 'ember-cli-embedded/services/embedded'
 
 module('Unit | Service | embedded', function (hooks) {
   setupTest(hooks)
