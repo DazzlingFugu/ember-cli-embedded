@@ -5,9 +5,7 @@ import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
 import { run } from '@ember/runloop'
 
-import type { TestContext } from '@ember/test-helpers'
-
-type TestApplication = TestContext['owner'] & {
+type TestApplication = Application & {
   // Public types are currently incomplete, these 2 properties exist:
   // https://github.com/emberjs/ember.js/blob/v3.26.1/packages/@ember/application/lib/application.js#L376-L377
   _booted: boolean
