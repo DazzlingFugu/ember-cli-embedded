@@ -97,9 +97,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
 }
 
 export function initialize(application: Application): void {
-  const env = application.resolveRegistration('config:environment')
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore: https://github.com/typed-ember/ember-cli-typescript/issues/1471
+  const env = application.resolveRegistration('config:environment') as { embedded?: GivenConfig }
   const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
 
   if (embeddedConfig.delegateStart) {
