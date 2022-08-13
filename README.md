@@ -296,6 +296,13 @@ See the [Contributing](./CONTRIBUTING.md) guide for details.
     </td></tr>
 <tr>
     <td align="center">
+        <a href="https://github.com/BlueCutOfficial">
+            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
+            <br />
+            <sub><b>BlueCutOfficial</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/cah-danmonroe">
             <img src="https://avatars.githubusercontent.com/u/11519684?v=4" width="100;" alt="cah-danmonroe"/>
             <br />
@@ -307,13 +314,6 @@ See the [Contributing](./CONTRIBUTING.md) guide for details.
             <img src="https://avatars.githubusercontent.com/u/8288415?v=4" width="100;" alt="saintsebastian"/>
             <br />
             <sub><b>saintsebastian</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/BlueCutOfficial">
-            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
-            <br />
-            <sub><b>BlueCutOfficial</b></sub>
         </a>
     </td>
     <td align="center">
