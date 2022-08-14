@@ -5,9 +5,7 @@ import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
 import { run } from '@ember/runloop'
 
-import type { TestContext } from 'ember-test-helpers'
-
-type TestApplication = TestContext['application'] & {
+type TestApplication = Application & {
   // Public types are currently incomplete, these 2 properties exist:
   // https://github.com/emberjs/ember.js/blob/v3.26.1/packages/@ember/application/lib/application.js#L376-L377
   _booted: boolean
@@ -44,7 +42,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     this.application.register('config:environment', {})
   })
 
-  hooks.afterEach(function () {
+  hooks.afterEach(function (this: Context) {
     run(this.application, 'destroy')
   })
 
@@ -102,7 +100,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     )
   })
 
-  test('without `delegateStart`, the specified config is registered', async function (assert) {
+  test('without `delegateStart`, the specified config is registered', async function (this: Context, assert) {
     const myCustomConfig = {
       donald: 'duck',
     }
@@ -153,7 +151,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     )
   })
 
-  test('with `delegateStart`, the passed config is not registered until the app is started', function (assert) {
+  test('with `delegateStart`, the passed config is not registered until the app is started', function (this: Context, assert) {
     const myCustomConfig = {
       donald: 'duck',
     }

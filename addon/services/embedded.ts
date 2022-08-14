@@ -12,6 +12,8 @@ export default class EmbeddedService<
     super(...arguments) // eslint-disable-line prefer-rest-params
 
     const factoryName = 'config:embedded'
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore: https://github.com/typed-ember/ember-cli-typescript/issues/1471
     const factory: { class: EmbeddedOptions } | undefined = getOwner(this).factoryFor(factoryName)
 
     assert(

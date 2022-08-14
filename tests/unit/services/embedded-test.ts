@@ -1,15 +1,16 @@
 import { module, test } from 'qunit'
 import { setupTest } from 'ember-qunit'
+import type EmbeddedService from 'ember-cli-embedded/services/embedded'
 
 module('Unit | Service | embedded', function (hooks) {
   setupTest(hooks)
 
   test('it fetches data from the config as a proxy', function (assert) {
-    this.owner.register('config:embedded', {
-      myKey: 'myValue',
-    })
+    const options = { myKey: 'myValue' };
 
-    const service = this.owner.lookup('service:embedded')
+    this.owner.register('config:embedded', options)
+
+    const service = this.owner.lookup('service:embedded') as EmbeddedService<typeof options>
 
     assert.strictEqual(
       service.get('myKey'),
@@ -17,6 +18,7 @@ module('Unit | Service | embedded', function (hooks) {
     )
 
     assert.strictEqual(
+      // @ts-expect-error: We try to access a property which does not exist
       service.get('doesNotExist'),
       undefined
     )

@@ -56,6 +56,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
         until: 'not defined',
         for: 'ember-cli-embedded',
         since: {
+          available: '0.5.0',
           enabled: '0.5.0'
         }
       }
@@ -75,6 +76,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
         until: 'not defined',
         for: 'ember-cli-embedded',
         since: {
+          available: '0.5.0',
           enabled: '0.5.0'
         }
       }
@@ -95,7 +97,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
 }
 
 export function initialize(application: Application): void {
-  const env = application.resolveRegistration('config:environment')
+  const env = application.resolveRegistration('config:environment') as { embedded?: GivenConfig }
   const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
 
   if (embeddedConfig.delegateStart) {
