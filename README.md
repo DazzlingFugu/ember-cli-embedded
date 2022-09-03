@@ -267,6 +267,13 @@ See the [Contributing](./CONTRIBUTING.md) guide for details.
         </a>
     </td>
     <td align="center">
+        <a href="https://github.com/ndekeister-us">
+            <img src="https://avatars.githubusercontent.com/u/56396753?v=4" width="100;" alt="ndekeister-us"/>
+            <br />
+            <sub><b>ndekeister-us</b></sub>
+        </a>
+    </td>
+    <td align="center">
         <a href="https://github.com/GreatWizard">
             <img src="https://avatars.githubusercontent.com/u/1322081?v=4" width="100;" alt="GreatWizard"/>
             <br />
@@ -286,15 +293,22 @@ See the [Contributing](./CONTRIBUTING.md) guide for details.
             <br />
             <sub><b>jacky-peopledoc</b></sub>
         </a>
-    </td>
+    </td></tr>
+<tr>
     <td align="center">
         <a href="https://github.com/romgere">
             <img src="https://avatars.githubusercontent.com/u/13900970?v=4" width="100;" alt="romgere"/>
             <br />
             <sub><b>romgere</b></sub>
         </a>
-    </td></tr>
-<tr>
+    </td>
+    <td align="center">
+        <a href="https://github.com/BlueCutOfficial">
+            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
+            <br />
+            <sub><b>BlueCutOfficial</b></sub>
+        </a>
+    </td>
     <td align="center">
         <a href="https://github.com/cah-danmonroe">
             <img src="https://avatars.githubusercontent.com/u/11519684?v=4" width="100;" alt="cah-danmonroe"/>
@@ -307,20 +321,6 @@ See the [Contributing](./CONTRIBUTING.md) guide for details.
             <img src="https://avatars.githubusercontent.com/u/8288415?v=4" width="100;" alt="saintsebastian"/>
             <br />
             <sub><b>saintsebastian</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/BlueCutOfficial">
-            <img src="https://avatars.githubusercontent.com/u/22059380?v=4" width="100;" alt="BlueCutOfficial"/>
-            <br />
-            <sub><b>BlueCutOfficial</b></sub>
-        </a>
-    </td>
-    <td align="center">
-        <a href="https://github.com/ndekeister-us">
-            <img src="https://avatars.githubusercontent.com/u/56396753?v=4" width="100;" alt="ndekeister-us"/>
-            <br />
-            <sub><b>ndekeister-us</b></sub>
         </a>
     </td></tr>
 </table>
