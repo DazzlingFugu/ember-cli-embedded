@@ -21,7 +21,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     uses: DazzlingFugu/.github/.github/workflows/js--tag-release-publish.yml@master
     with:
-      node-version: 12
+      node-version: 14
       package-manager: yarn
     secrets:
       npm-automation-token: ${{ secrets.NPM_AUTOMATION_TOKEN }}
