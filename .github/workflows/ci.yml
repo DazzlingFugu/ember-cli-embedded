@@ -20,8 +20,6 @@ jobs:
       node-version: 14
       package-manager: yarn
       ember-try-scenarios: "[
-          'ember-lts-3.20',
-          'ember-lts-3.24',
           'ember-lts-3.28',
           'ember-release',
           'ember-beta',
