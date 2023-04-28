@@ -4,10 +4,12 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 
+⚠️ This addon depends on [ember-export-application-global](https://github.com/ember-cli/ember-export-application-global)
+to get your application globally exposed, but it's deprecated.
+
 Makes it easier to embed your Ember application in another (non-Ember) app.
 
-This addon gives you more control over how and when your Ember app will boot and also allows to 
-add/override some configuration so that the Ember app can boot with some context-dependent config.
+This addon gives you more control over how and when your Ember app will boot and also allows how to add/override some configuration so that the Ember app can boot with some context-dependent config.
 
 We found it especially useful, for example, when migrating an existing app to Ember part by part.
 
@@ -55,11 +57,7 @@ Doing so will make your application hold until you manually start it. (read on t
 
 ### Start your app
 
-This addon relies on [ember-export-application-global](https://github.com/ember-cli/ember-export-application-global)
-to get your application globally exposed. See its documentation for more information.
-
-In your JS code, just execute `MyApp.start(/* optionalConfig */)` to resume the boot of your 
-application. As per the example, it takes an optional configuration as its first argument.
+In your JS code, execute `MyApp.start(/* optionalConfig */)` to resume the boot of your application. As per the example, it takes an optional configuration as its first argument.
 
 Remember:
 Your app __will not start__ unless you call `MyApp.start(/* optionalConfig */)` method.
@@ -180,8 +178,7 @@ assert.deepEqual(
 
 ### About the test environment
 
-In your test suite, you will probably want to let your application start automatically without this
-addon interfering.
+In your test suite, you will probably want to let your application start automatically without this addon interfering.
 
 To do that, make sure to disable the addon for the `test` environment:
 
@@ -196,8 +193,7 @@ if (environment === 'test') {
 
 ### TypeScript support
 
-If your consuming application relies on TypeScript, you can make your life a bit easier by using the
-included types:
+If your consuming application relies on TypeScript, you can make your life a bit easier by using the included types:
 
 **File `/types/my-project/index.d.ts`**
 
