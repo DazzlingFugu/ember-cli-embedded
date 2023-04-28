@@ -7,13 +7,12 @@
 Makes it easier to embed your Ember application in another (non-Ember) app.
 
 This addon gives you more control over how and when your Ember app will boot and also allows to 
-add/override some configuration, so that the Ember app can boot with some context-dependent config.
+add/override some configuration so that the Ember app can boot with some context-dependent config.
 
 We found it especially useful, for example, when migrating an existing app to Ember part by part.
 
 
 ## Compatibility
-
 
 * Ember.js v3.28 or above
 * Ember CLI v3.28 or above
@@ -47,7 +46,7 @@ In your `config/environment.js`, add the following config to the `ENV`:
   };
 ```
 
-Doing so will make your application hold, until your manually start it. (read on to lear more)
+Doing so will make your application hold until you manually start it. (read on to learn more)
 
 > For compatibility reasons, this behaviour will work as long as the value of `embedded` is truthy
 > but we plan to remove it in a future version.  
@@ -63,7 +62,7 @@ In your JS code, just execute `MyApp.start(/* optionalConfig */)` to resume the 
 application. As per the example, it takes an optional configuration as its first argument.
 
 Remember:
-Your app __will not start__ unless you call the `MyApp.start(/* optionalConfig */)` method.
+Your app __will not start__ unless you call `MyApp.start(/* optionalConfig */)` method.
 
 
 ### Access the config from your application
@@ -181,7 +180,7 @@ assert.deepEqual(
 
 ### About the test environment
 
-In your tests suite, you will probably want to let your application start automatically without this
+In your test suite, you will probably want to let your application start automatically without this
 addon interfering.
 
 To do that, make sure to disable the addon for the `test` environment:
@@ -197,7 +196,7 @@ if (environment === 'test') {
 
 ### TypeScript support
 
-If your consuming application relies TypeScript, you can make you life a bit easier by using the
+If your consuming application relies on TypeScript, you can make your life a bit easier by using the
 included types:
 
 **File `/types/my-project/index.d.ts`**
