@@ -3,16 +3,11 @@
 [![CI](https://github.com/DazzlingFugu/ember-cli-embedded/actions/workflows/ci.yml/badge.svg)](https://github.com/DazzlingFugu/ember-cli-embedded/actions/workflows/ci.yml) [![Ember Observer Score](https://emberobserver.com/badges/ember-cli-embedded.svg)](https://emberobserver.com/addons/ember-cli-embedded)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-
-⚠️ This addon depends on [ember-export-application-global](https://github.com/ember-cli/ember-export-application-global)
-to get your application globally exposed, but it's deprecated.
-
 Makes it easier to embed your Ember application in another (non-Ember) app.
 
 This addon gives you more control over how and when your Ember app will boot and also allows how to add/override some configuration so that the Ember app can boot with some context-dependent config.
 
 We found it especially useful, for example, when migrating an existing app to Ember part by part.
-
 
 ## Compatibility
 
@@ -37,15 +32,23 @@ In your `config/environment.js`, add the following config to the `ENV`:
 
 ```js
   let ENV = {
-    ...
+    ...,
+    modulePrefix: 'my-app-name',
+    
     embedded: {
       delegateStart: true,
       config: { // optional
         // Default values for the config passed at boot
       },
     },
-    ...
-  };
+
+   /*
+    * 1. If you leave this flag undefined, you will have to start your app with `MyAppName.start(...)`
+    * 2. If you set this flag to `SomeOtherAppName` (String), you will have to start your app with `SomeOtherAppName.start(...)`
+    * 3. If you set this flag to `false` (Boolean), you will NOT be able to start your app with `.start(...)` at all
+    */
+    exportApplicationGlobal: 'SomeOtherAppName'
+  }
 ```
 
 Doing so will make your application hold until you manually start it. (read on to learn more)
@@ -57,10 +60,11 @@ Doing so will make your application hold until you manually start it. (read on t
 
 ### Start your app
 
-In your JS code, execute `MyApp.start(/* optionalConfig */)` to resume the boot of your application. As per the example, it takes an optional configuration as its first argument.
+In your JS code, execute `MyAppName.start(/* optionalConfig */)` to resume the boot of your application. As per the example, it takes an optional configuration as its first argument.
 
-Remember:
-Your app __will not start__ unless you call `MyApp.start(/* optionalConfig */)` method.
+### Attention :warning:
+1. Your app __will not start__ unless you call `MyAppName.start(/* optionalConfig */)` method.
+2. Calling `MyAppName.start(...)` will __not work__ if you've set `exportApplicationGlobal: false` in `your config/environment.js`
 
 
 ### Access the config from your application
@@ -71,14 +75,15 @@ Consider the following `config/environment.js` file:
 
 ```js
   let ENV = {
-    ...
+    ...,
+    modulePrefix: 'my-app',
     embedded: {
       config: {
         option1: 'value-1',
       },
     },
     ...
-  };
+  }
 ```
 
 And the application is started that way:
@@ -136,6 +141,8 @@ Consider the following `config/environment.js` file:
     APP: {
       rootElement: `#some-element`,
     },
+
+    modulePrefix: 'my-app',
 
     embedded: {
       config: {
