@@ -1,27 +1,11 @@
 import Application from '@ember/application'
 import { deprecate } from '@ember/debug'
-
-interface ObjectConfig {
-  delegateStart?:
-    | undefined
-    | boolean
-
-  config?:
-    | undefined
-    | Record<string, never> // empty object `{}`
-    | Record<string, unknown>
-}
-
-type NullishConfig =
-  | null
-  | undefined
-
-type DeprecatedBooleanConfig = boolean
-
-type GivenConfig =
-  | NullishConfig
-  | DeprecatedBooleanConfig
-  | ObjectConfig
+import {
+  ObjectConfig,
+  NullishConfig,
+  DeprecatedBooleanConfig,
+  GivenConfig
+} from '../../types'
 
 function configIsNullish(config: GivenConfig): config is NullishConfig {
   return config === null || config === undefined
@@ -97,6 +81,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
 }
 
 export function initialize(application: Application): void {
+
   const env = application.resolveRegistration('config:environment') as { embedded?: GivenConfig }
   const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
 
@@ -126,5 +111,5 @@ export function initialize(application: Application): void {
 export default {
   name: 'ember-cli-embedded',
   after: 'export-application-global',
-  initialize,
+  initialize
 }
