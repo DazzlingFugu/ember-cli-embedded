@@ -17,7 +17,7 @@ jobs:
   org:
     uses: DazzlingFugu/.github/.github/workflows/js--emberjs-addons.yml@master
     with:
-      node-version: 14
+      node-version: 16
       package-manager: yarn
       ember-try-scenarios: "[
           'ember-lts-3.28',
