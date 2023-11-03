@@ -1581,14 +1581,13 @@
   integrity sha512-DMtjEhCHgrMion+qDWQVC9gW5SIY5wElueFbAmBLghTcUOgLWLTFzah3PxKln9cQNRO36699Irg2UdYOJsY6Jg==
 
 "@types/ember__routing@*", "@types/ember__routing@^4.0.12":
-  version "4.0.13"
-  resolved "https://registry.yarnpkg.com/@types/ember__routing/-/ember__routing-4.0.13.tgz#d73ffee1199f673ea7730ba2f9127970df3126d4"
-  integrity sha512-CNBx6RmGzZpe8ahuy6+aPYKc/EelmbkndqgCigGkkrqvV5B+ayb3rdeKa2XojyXIqSjvjmcYyj9TTvian0yDgg==
+  version "4.0.17"
+  resolved "https://registry.yarnpkg.com/@types/ember__routing/-/ember__routing-4.0.17.tgz#c0b2a970311f9845ac765a9affe4093ee8bc4772"
+  integrity sha512-hnTWhmRwfd9P0X0gcBVBU7guqtT7B04MDkSBdcmsR4GxMP6IrEwyXI8XX8ZhqHITojkUtNtSDW7PGp0Ch4oOPg==
   dependencies:
     "@types/ember" "*"
     "@types/ember__controller" "*"
     "@types/ember__object" "*"
-    "@types/ember__routing" "*"
     "@types/ember__service" "*"
 
 "@types/ember__runloop@*", "@types/ember__runloop@^4.0.2":
