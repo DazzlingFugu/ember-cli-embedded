@@ -4,9 +4,9 @@ import { classify } from '@ember/string'
 export function initialize(application: Application): void {
   const env = application.resolveRegistration('config:environment') as {
     embedded?: {
-      delegateStart: boolean
+      delegateStart?: undefined | boolean
     }
-    exportApplicationGlobal: boolean | string
+    exportApplicationGlobal?: undefined | boolean | string
     modulePrefix: string
   }
 
@@ -28,12 +28,12 @@ export function initialize(application: Application): void {
       return
     }
 
-    const value = env.exportApplicationGlobal
+    const { exportApplicationGlobal } = env
 
     let globalName
 
-    if (typeof value === 'string') {
-      globalName = value
+    if (typeof exportApplicationGlobal === 'string') {
+      globalName = exportApplicationGlobal
     } else {
       globalName = classify(env.modulePrefix)
     }
