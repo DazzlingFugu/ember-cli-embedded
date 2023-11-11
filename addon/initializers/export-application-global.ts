@@ -38,9 +38,7 @@ export function initialize(application: Application): void {
       globalName = classify(env.modulePrefix)
     }
 
-    // @ts-ignore: until there's a way to access a dynamic propertyName of window in TS ?
     if (!theGlobal[globalName]) {
-      // @ts-ignore: until there's a way to set a dynamic propertyName on the window in TS ?
       theGlobal[globalName] = application
     }
   }
