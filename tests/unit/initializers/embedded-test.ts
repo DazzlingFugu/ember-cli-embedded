@@ -33,7 +33,7 @@ module('Unit | Initializer | embedded', function (hooks) {
       initialize,
     })
 
-    // @ts-ignore: temporarily required as public types are incomplete
+    // @ts-expect-error: Temporarily required as public types are incomplete
     this.application = this.TestApplication.create({
       autoboot: false,
       Resolver,

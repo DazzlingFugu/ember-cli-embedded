@@ -74,7 +74,7 @@ export function initialize(application: Application): void {
   const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
 
   if (embeddedConfig.delegateStart) {
-    // @ts-ignore: until correct public types are available
+    // @ts-expect-error: Until correct public types are available
     application.reopen({
       start: function emberCliEmbeddedStart(this: Application, config = {}) {
         const _embeddedConfig = Object.assign({}, embeddedConfig.config, config)
