@@ -16,7 +16,10 @@
     "url": "https://github.com/DazzlingFugu"
   },
   "homepage": "https://github.com/DazzlingFugu/ember-cli-embedded",
-  "repository": "https://github.com/DazzlingFugu/ember-cli-embedded",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DazzlingFugu/ember-cli-embedded.git"
+  },
   "bugs": "https://github.com/DazzlingFugu/ember-cli-embedded/issues",
   "files": [
     "/addon",
