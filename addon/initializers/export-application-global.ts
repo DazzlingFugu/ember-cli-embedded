@@ -17,7 +17,9 @@ export function initialize(application: Application): void {
     
     if (typeof window !== 'undefined') {
       theGlobal = window
+      // @ts-expect-error: `global` comes from Node.js
     } else if (typeof global !== 'undefined') {
+      // @ts-expect-error: `global` comes from Node.js
       theGlobal = global
     } else if (typeof self !== 'undefined') {
       theGlobal = self

@@ -11,18 +11,17 @@ We found it especially useful, for example, when migrating an existing app to Em
 
 ## Compatibility
 
-* Ember.js v3.28 or above
-* Ember CLI v3.28 or above
-* Node.js v14 or above
+* Ember.js v4.8 or above
+* Ember CLI v4.8 or above
+* Node.js v18 or above
 
-## Usage
+## Installation
 
-### Installation
-
-```console
+```
 ember install ember-cli-embedded
 ```
 
+## Usage
 
 ### Configuration
 
@@ -31,24 +30,24 @@ This plugin is opt-in by default, it does nothing to your app unless you configu
 In your `config/environment.js`, add the following config to the `ENV`:
 
 ```js
-  let ENV = {
-    ...,
-    modulePrefix: 'my-app-name',
-    
-    embedded: {
-      delegateStart: true,
-      config: { // optional
-        // Default values for the config passed at boot
-      },
+let ENV = {
+  ...,
+  modulePrefix: 'my-app-name',
+  
+  embedded: {
+    delegateStart: true,
+    config: { // optional
+      // Default values for the config passed at boot
     },
+  },
 
-   /*
-    * 1. If you leave this flag undefined, you will have to start your app with `MyAppName.start(...)`
-    * 2. If you set this flag to `SomeOtherAppName` (String), you will have to start your app with `SomeOtherAppName.start(...)`
-    * 3. If you set this flag to `false` (Boolean), you will NOT be able to start your app with `.start(...)` at all
-    */
-    exportApplicationGlobal: 'SomeOtherAppName'
-  }
+  /*
+  * 1. If this key is undefined or set to `true`, you will have to start your app with `MyAppName.start(...)`
+  * 2. If this key is set to `SomeOtherAppName`, you will have to start your app with `SomeOtherAppName.start(...)`
+  * 3. If this key is set to `false`, you will NOT be able to start your app with `.start(...)` at all
+  */
+  exportApplicationGlobal: 'SomeOtherAppName'
+}
 ```
 
 Doing so will make your application hold until you manually start it. (read on to learn more)
@@ -57,15 +56,14 @@ Doing so will make your application hold until you manually start it. (read on t
 > but we plan to remove it in a future version.  
 > Please stick to the config format above.
 
-
 ### Start your app
 
 In your JS code, execute `MyAppName.start(/* optionalConfig */)` to resume the boot of your application. As per the example, it takes an optional configuration as its first argument.
 
 ### Attention :warning:
+
 1. Your app __will not start__ unless you call `MyAppName.start(/* optionalConfig */)` method.
 2. Calling `MyAppName.start(...)` will __not work__ if you've set `exportApplicationGlobal: false` in `your config/environment.js`
-
 
 ### Access the config from your application
 
@@ -74,21 +72,21 @@ In your JS code, execute `MyAppName.start(/* optionalConfig */)` to resume the b
 Consider the following `config/environment.js` file:
 
 ```js
-  let ENV = {
-    ...,
-    modulePrefix: 'my-app',
-    embedded: {
-      config: {
-        option1: 'value-1',
-      },
+let ENV = {
+  ...,
+  modulePrefix: 'my-app',
+  embedded: {
+    config: {
+      option1: 'value-1',
     },
-    ...
-  }
+  },
+  ...
+}
 ```
 
 And the application is started that way:
 
-```js
+```html
 <script>
   MyApp.start({ option2: 'value-2' });
 </script>
@@ -108,7 +106,6 @@ class MyService extends Service {
 }
 ```
 
-
 #### Via the container itself
 
 Sometimes it can be more convenient to access the data directly from the container.
@@ -127,7 +124,6 @@ let embeddedConfig = getOwner(this).lookup('config:embedded');
 console.log(embeddedConfig.option2);
 ```
 
-
 ### Override your `APP` configuration
 
 The startup object will be merged into your `APP` configuration key, which is very useful, for 
@@ -137,24 +133,24 @@ values.
 Consider the following `config/environment.js` file:
 
 ```js
-  let ENV = {
-    APP: {
-      rootElement: `#some-element`,
-    },
+let ENV = {
+  APP: {
+    rootElement: `#some-element`,
+  },
 
-    modulePrefix: 'my-app',
+  modulePrefix: 'my-app',
 
-    embedded: {
-      config: {
-        option1: 'value-1',
-      },
+  embedded: {
+    config: {
+      option1: 'value-1',
     },
-  };
+  },
+};
 ```
 
 And the application is started that way:
 
-```js
+```html
 <script>
   MyApp.start({ option2: 'value-2' });
 </script>
@@ -182,7 +178,6 @@ assert.deepEqual(
 );
 ```
 
-
 ### About the test environment
 
 In your test suite, you will probably want to let your application start automatically without this addon interfering.
@@ -196,7 +191,6 @@ if (environment === 'test') {
   ENV.embedded.delegateStart = false;
 }
 ```
-
 
 ### TypeScript support
 
@@ -223,7 +217,7 @@ export {};
 
 ```ts
 import Component from '@glimmer/component';
-import { inject as service } from '@ember/service';
+import { service } from '@ember/service';
 
 export default class MyComponent extends Component {
   /**
@@ -244,10 +238,9 @@ export default class MyComponent extends Component {
 }
 ```
 
-
 ## Contributing
 
-See the [Contributing](./CONTRIBUTING.md) guide for details.
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## Contributors
 

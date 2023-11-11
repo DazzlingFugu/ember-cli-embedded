@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 'use strict'
 
 module.exports = {
@@ -17,6 +16,8 @@ module.exports = {
   },
 
   options: {
+    'ember-cli-babel': { enableTypeScriptTransform: true },
+
     babel: {
       sourceMaps: 'inline',
     },
