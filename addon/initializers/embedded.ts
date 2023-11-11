@@ -1,6 +1,7 @@
 import Application from '@ember/application'
 import { deprecate } from '@ember/debug'
-import {
+
+import type {
   ObjectConfig,
   NullishConfig,
   DeprecatedBooleanConfig,
@@ -33,7 +34,7 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
   if (configIsBoolean(userConfig)) {
     const embeddedConfig = { delegateStart: userConfig, config: {} }
     deprecate(
-      'The `embedded` config property MUST be `undefined` or an an object',
+      'The `embedded` config property MUST be `undefined` or an object',
       false,
       {
         id: 'ember-cli-embedded.bad-object-config',
