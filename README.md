@@ -11,9 +11,9 @@ We found it especially useful, for example, when migrating an existing app to Em
 
 ## Compatibility
 
-* Ember.js v4.8 or above
-* Ember CLI v4.8 or above
-* Node.js v18 or above
+- Ember.js v4.8 or above
+- Ember CLI v4.8 or above
+- Node.js v18 or above
 
 ## Installation
 
@@ -33,7 +33,7 @@ In your `config/environment.js`, add the following config to the `ENV`:
 let ENV = {
   ...,
   modulePrefix: 'my-app-name',
-  
+
   embedded: {
     delegateStart: true,
     config: { // optional
@@ -62,8 +62,8 @@ In your JS code, execute `MyAppName.start(/* optionalConfig */)` to resume the b
 
 ### Attention :warning:
 
-1. Your app __will not start__ unless you call `MyAppName.start(/* optionalConfig */)` method.
-2. Calling `MyAppName.start(...)` will __not work__ if you've set `exportApplicationGlobal: false` in `your config/environment.js`
+1. Your app **will not start** unless you call `MyAppName.start(/* optionalConfig */)` method.
+2. Calling `MyAppName.start(...)` will **not work** if you've set `exportApplicationGlobal: false` in `your config/environment.js`
 
 ### Access the config from your application
 
@@ -88,7 +88,7 @@ And the application is started that way:
 
 ```html
 <script>
-  MyApp.start({ option2: 'value-2' });
+  MyApp.start({ option2: "value-2" });
 </script>
 ```
 
@@ -126,7 +126,7 @@ console.log(embeddedConfig.option2);
 
 ### Override your `APP` configuration
 
-The startup object will be merged into your `APP` configuration key, which is very useful, for 
+The startup object will be merged into your `APP` configuration key, which is very useful, for
 instance, if you want to change the `rootElement` of your application and other context-sensitive
 values.
 
@@ -138,11 +138,11 @@ let ENV = {
     rootElement: `#some-element`,
   },
 
-  modulePrefix: 'my-app',
+  modulePrefix: "my-app",
 
   embedded: {
     config: {
-      option1: 'value-1',
+      option1: "value-1",
     },
   },
 };
@@ -152,30 +152,27 @@ And the application is started that way:
 
 ```html
 <script>
-  MyApp.start({ option2: 'value-2' });
+  MyApp.start({ option2: "value-2" });
 </script>
 ```
 
 This would result in:
 
 ```js
-import APP_ENV_CONFIG from 'my-app/config/environment'
+import APP_ENV_CONFIG from "my-app/config/environment";
 
-assert.deepEqual(
-  APP_ENV_CONFIG,
-  {
-    APP: {
-      option2: 'value-2',
-      rootElement: `#some-element`,
-    },
+assert.deepEqual(APP_ENV_CONFIG, {
+  APP: {
+    option2: "value-2",
+    rootElement: `#some-element`,
+  },
 
-    embedded: {
-      config: {
-        option1: 'value-1',
-      },
+  embedded: {
+    config: {
+      option1: "value-1",
     },
-  }
-);
+  },
+});
 ```
 
 ### About the test environment
@@ -187,7 +184,7 @@ To do that, make sure to disable the addon for the `test` environment:
 ```js
 // file `config/environment.js`
 
-if (environment === 'test') {
+if (environment === "test") {
   ENV.embedded.delegateStart = false;
 }
 ```
@@ -199,15 +196,13 @@ If your consuming application relies on TypeScript, you can make your life a bit
 **File `/types/my-project/index.d.ts`**
 
 ```ts
-import type BaseEmbeddedService from 'ember-cli-embedded/services/embedded';
+import type BaseEmbeddedService from "ember-cli-embedded/services/embedded";
 
 declare global {
-
   type EmbeddedService = BaseEmbeddedService<{
     one: string;
     two?: string;
   }>;
-
 }
 
 export {};
@@ -216,8 +211,8 @@ export {};
 **File `/app/components/my-component.ts`**
 
 ```ts
-import Component from '@glimmer/component';
-import { service } from '@ember/service';
+import Component from "@glimmer/component";
+import { service } from "@ember/service";
 
 export default class MyComponent extends Component {
   /**
@@ -227,13 +222,14 @@ export default class MyComponent extends Component {
   @service
   declare embedded: EmbeddedService;
 
-  get one() { // Return type inferred: `string | undefined`
-    return this.embedded.get('one');
+  get one() {
+    // Return type inferred: `string | undefined`
+    return this.embedded.get("one");
   }
 
   get two() {
     // TypeScript returns an error as `twoo` is not a recognised key
-    return this.embedded.get('twoo');
+    return this.embedded.get("twoo");
   }
 }
 ```

@@ -49,25 +49,17 @@ module('Unit | Initializer | embedded', function (hooks) {
   test('by default, it does not change the normal behaviour', async function (this: Context, assert) {
     await this.application.boot()
 
-    assert.strictEqual(
-      this.application.start,
-      undefined,
-      'No `start()` method has been added'
-    )
+    assert.strictEqual(this.application.start, undefined, 'No `start()` method has been added')
 
     assert.deepEqual(
       this.application.resolveRegistration('config:embedded'),
       {},
-      'An empty embedded config is registered'
+      'An empty embedded config is registered',
     )
 
     assert.true(this.application._booted, 'The app has booted')
 
-    assert.strictEqual(
-      this.application._readinessDeferrals,
-      0,
-      'No deferral has been added'
-    )
+    assert.strictEqual(this.application._readinessDeferrals, 0, 'No deferral has been added')
   })
 
   test('without `delegateStart`, it does not change the normal behaviour', async function (this: Context, assert) {
@@ -79,25 +71,17 @@ module('Unit | Initializer | embedded', function (hooks) {
 
     await this.application.boot()
 
-    assert.strictEqual(
-      this.application.start,
-      undefined,
-      'No `start()` method has been added'
-    )
+    assert.strictEqual(this.application.start, undefined, 'No `start()` method has been added')
 
     assert.deepEqual(
       this.application.resolveRegistration('config:embedded'),
       {},
-      'An empty embedded config is registered'
+      'An empty embedded config is registered',
     )
 
     assert.true(this.application._booted, 'The app has booted')
 
-    assert.strictEqual(
-      this.application._readinessDeferrals,
-      0,
-      'No deferral has been added'
-    )
+    assert.strictEqual(this.application._readinessDeferrals, 0, 'No deferral has been added')
   })
 
   test('without `delegateStart`, the specified config is registered', async function (this: Context, assert) {
@@ -117,7 +101,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     assert.deepEqual(
       this.application.resolveRegistration('config:embedded'),
       myCustomConfig,
-      'The embedded config matches the custom config'
+      'The embedded config matches the custom config',
     )
   })
 
@@ -139,7 +123,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     assert.strictEqual(
       typeof this.application.start,
       'function',
-      'A `start()` method has been added'
+      'A `start()` method has been added',
     )
 
     assert.false(this.application._booted, 'The app has not booted')
@@ -147,7 +131,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     assert.strictEqual(
       this.application._readinessDeferrals,
       initialDeferrals + 1,
-      'A deferral has been added'
+      'A deferral has been added',
     )
   })
 
@@ -172,7 +156,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     assert.deepEqual(
       this.application.resolveRegistration('config:embedded'),
       undefined,
-      'The embedded config is not registered until the app is started'
+      'The embedded config is not registered until the app is started',
     )
   })
 
@@ -207,7 +191,7 @@ module('Unit | Initializer | embedded', function (hooks) {
         hey: 'sup?',
         yay: 'one more',
       },
-      'The passed start config is melded into the embedded config'
+      'The passed start config is melded into the embedded config',
     )
   })
 
@@ -231,7 +215,7 @@ module('Unit | Initializer | embedded', function (hooks) {
     assert.strictEqual(
       this.application._readinessDeferrals,
       initialDeferrals - 1,
-      'A deferral has been removed'
+      'A deferral has been removed',
     )
   })
 })

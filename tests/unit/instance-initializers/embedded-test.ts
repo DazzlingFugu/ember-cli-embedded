@@ -49,7 +49,8 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
       this.appInstance.resolveRegistration('config:environment'),
       {
         APP: {},
-      }
+      },
+      /* block Prettier */
     )
   })
 
@@ -70,7 +71,8 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
         APP: {
           yoKey: 'Yo Value!',
         },
-      }
+      },
+      /* block Prettier */
     )
   })
 })

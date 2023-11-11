@@ -1,7 +1,5 @@
 export interface ObjectConfig {
-  delegateStart?:
-    | undefined
-    | boolean
+  delegateStart?: undefined | boolean
 
   config?:
     | undefined
@@ -9,13 +7,8 @@ export interface ObjectConfig {
     | Record<string, unknown>
 }
 
-export type NullishConfig =
-  | null
-  | undefined
+export type NullishConfig = null | undefined
 
 export type DeprecatedBooleanConfig = boolean
 
-export type GivenConfig =
-  | NullishConfig
-  | DeprecatedBooleanConfig
-  | ObjectConfig
+export type GivenConfig = NullishConfig | DeprecatedBooleanConfig | ObjectConfig
