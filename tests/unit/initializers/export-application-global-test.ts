@@ -5,6 +5,8 @@ import Resolver from 'ember-resolver'
 import { classify } from '@ember/string'
 import { run } from '@ember/runloop'
 
+import type AppConfig from 'dummy/config/environment'
+
 type TestApplication = Application & {
   // Public types are currently incomplete, these 2 properties exist:
   // https://github.com/emberjs/ember.js/blob/v3.26.1/packages/@ember/application/lib/application.js#L376-L377
@@ -43,9 +45,8 @@ module('Unit | Initializer | export-application-global', function (hooks) {
   })
 
   hooks.afterEach(function (this: Context) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO replace `any`
-    const config: any = this.application.resolveRegistration('config:environment')
-    const exportedApplicationGlobal: string = classify(config.modulePrefix)
+    const config = this.application.resolveRegistration('config:environment') as typeof AppConfig
+    const exportedApplicationGlobal = classify(config.modulePrefix)
 
     // @ts-expect-error: No index signature for Window
     delete window[exportedApplicationGlobal]
