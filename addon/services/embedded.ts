@@ -5,9 +5,8 @@ import { assert } from '@ember/debug'
 type AnyObject = Record<string, unknown>
 
 export default class EmbeddedService<
-  EmbeddedOptions extends AnyObject = AnyObject
+  EmbeddedOptions extends AnyObject = AnyObject,
 > extends ObjectProxy<EmbeddedOptions> {
-
   constructor() {
     super(...arguments) // eslint-disable-line prefer-rest-params
 
@@ -16,19 +15,15 @@ export default class EmbeddedService<
     // @ts-ignore: https://github.com/typed-ember/ember-cli-typescript/issues/1471
     const factory: { class: EmbeddedOptions } | undefined = getOwner(this).factoryFor(factoryName)
 
-    assert(
-      `The factory "${factoryName}" could not be found.`,
-      typeof factory === 'object'
-    )
+    assert(`The factory "${factoryName}" could not be found.`, typeof factory === 'object')
 
     this.content = factory.class
   }
-
 }
 
 // DO NOT DELETE: this is how TypeScript knows how to look up your services.
 declare module '@ember/service' {
   interface Registry {
-    embedded: EmbeddedService;
+    embedded: EmbeddedService
   }
 }

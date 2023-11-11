@@ -2,19 +2,20 @@ import Application from '@ember/application'
 import { classify } from '@ember/string'
 
 export function initialize(application: Application): void {
-  const env = application.resolveRegistration('config:environment') as { 
+  const env = application.resolveRegistration('config:environment') as {
     embedded?: {
       delegateStart: boolean
-    },
-    exportApplicationGlobal: boolean | string,
+    }
+    exportApplicationGlobal: boolean | string
     modulePrefix: string
-   }
+  }
 
-  const mustExportApplicationGlobal = env.embedded?.delegateStart === true && env.exportApplicationGlobal !== false
-  
+  const mustExportApplicationGlobal =
+    env.embedded?.delegateStart === true && env.exportApplicationGlobal !== false
+
   if (mustExportApplicationGlobal) {
     let theGlobal
-    
+
     if (typeof window !== 'undefined') {
       theGlobal = window
       // @ts-expect-error: `global` comes from Node.js
@@ -28,7 +29,7 @@ export function initialize(application: Application): void {
     }
 
     const value = env.exportApplicationGlobal
-    
+
     let globalName
 
     if (typeof value === 'string') {
@@ -47,5 +48,5 @@ export function initialize(application: Application): void {
 
 export default {
   name: 'export-application-global',
-  initialize
+  initialize,
 }

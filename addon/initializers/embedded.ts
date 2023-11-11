@@ -1,12 +1,7 @@
 import Application from '@ember/application'
 import { deprecate } from '@ember/debug'
 
-import type {
-  ObjectConfig,
-  NullishConfig,
-  DeprecatedBooleanConfig,
-  GivenConfig
-} from '../../types'
+import type { ObjectConfig, NullishConfig, DeprecatedBooleanConfig, GivenConfig } from '../../types'
 
 function configIsNullish(config: GivenConfig): config is NullishConfig {
   return config === null || config === undefined
@@ -17,10 +12,7 @@ function configIsBoolean(config: GivenConfig): config is DeprecatedBooleanConfig
 }
 
 function configIsObjectUnknown(config: ObjectConfig): config is Record<string, unknown> {
-  return (
-    config.delegateStart === undefined
-    && config.config === undefined
-  )
+  return config.delegateStart === undefined && config.config === undefined
 }
 
 function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
@@ -33,28 +25,24 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
 
   if (configIsBoolean(userConfig)) {
     const embeddedConfig = { delegateStart: userConfig, config: {} }
-    deprecate(
-      'The `embedded` config property MUST be `undefined` or an object',
-      false,
-      {
-        id: 'ember-cli-embedded.bad-object-config',
-        until: 'not defined',
-        for: 'ember-cli-embedded',
-        since: {
-          available: '0.5.0',
-          enabled: '0.5.0'
-        }
-      }
-    )
+    deprecate('The `embedded` config property MUST be `undefined` or an object', false, {
+      id: 'ember-cli-embedded.bad-object-config',
+      until: 'not defined',
+      for: 'ember-cli-embedded',
+      since: {
+        available: '0.5.0',
+        enabled: '0.5.0',
+      },
+    })
 
     return embeddedConfig
   }
 
   if (configIsObjectUnknown(userConfig)) {
     deprecate(
-      'The config MUST contain a `delegateStart` property. '
-      + 'Assuming `true` for backward compatibility. '
-      + 'The config must now be defined in a `config` property',
+      'The config MUST contain a `delegateStart` property. ' +
+        'Assuming `true` for backward compatibility. ' +
+        'The config must now be defined in a `config` property',
       false,
       {
         id: 'ember-cli-embedded.bad-object-config',
@@ -62,9 +50,9 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
         for: 'ember-cli-embedded',
         since: {
           available: '0.5.0',
-          enabled: '0.5.0'
-        }
-      }
+          enabled: '0.5.0',
+        },
+      },
     )
 
     return {
@@ -77,12 +65,11 @@ function normalizeConfig(userConfig: GivenConfig): ObjectConfig {
     {
       config: {},
     },
-    userConfig
+    userConfig,
   )
 }
 
 export function initialize(application: Application): void {
-
   const env = application.resolveRegistration('config:environment') as { embedded?: GivenConfig }
   const embeddedConfig: ObjectConfig = normalizeConfig(env.embedded)
 
@@ -90,11 +77,7 @@ export function initialize(application: Application): void {
     // @ts-ignore: until correct public types are available
     application.reopen({
       start: function emberCliEmbeddedStart(this: Application, config = {}) {
-        const _embeddedConfig = Object.assign(
-          {},
-          embeddedConfig.config,
-          config
-        )
+        const _embeddedConfig = Object.assign({}, embeddedConfig.config, config)
 
         this.register('config:embedded', _embeddedConfig, { instantiate: false })
 
@@ -103,7 +86,6 @@ export function initialize(application: Application): void {
     })
 
     application.deferReadiness()
-
   } else {
     application.register('config:embedded', embeddedConfig.config)
   }
@@ -112,5 +94,5 @@ export function initialize(application: Application): void {
 export default {
   name: 'ember-cli-embedded',
   after: 'export-application-global',
-  initialize
+  initialize,
 }
