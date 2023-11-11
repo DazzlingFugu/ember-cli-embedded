@@ -51,20 +51,15 @@ module('Unit | Initializer | export-application-global', function (hooks) {
     run(this.application, 'destroy')
   })
 
-  // @ts-ignore: because QUnit is not set up with TS propertly and does not like .each()
-  test.each(
-    'it adds expected application global to window if config.embedded.delegateStart is true',
-    [
-      ['something-random', 'SomethingRandom'],
-      ['something_more-random', 'SomethingMoreRandom'],
-      ['something-', 'Something'],
-      ['something', 'Something'],
-    ],
-    async function (
-      this: Context,
-      assert: Record<string, unknown>,
-      testData: Array<Array<string>>,
-    ) {
+  const testCases = [
+    ['something-random', 'SomethingRandom'],
+    ['something_more-random', 'SomethingMoreRandom'],
+    ['something-', 'Something'],
+    ['something', 'Something'],
+  ] as const
+
+  testCases.forEach((testData) => {
+    test('it adds expected application global to window if `config.embedded.delegateStart` is `true`', async function (this: Context, assert) {
       const [modulePrefix, exportedApplicationGlobal] = testData
 
       this.application.register('config:environment', {
@@ -76,23 +71,20 @@ module('Unit | Initializer | export-application-global', function (hooks) {
 
       await this.application.boot()
 
-      // @ts-expect-error: TODO incorrect types
       assert.strictEqual(
-        // @ts-ignore: because TS doesn't like modulePrefix
         classify(modulePrefix),
         exportedApplicationGlobal,
         'it "classifies" module prefix',
       )
 
-      // @ts-expect-error: TODO incorrect types
       assert.deepEqual(
         // @ts-ignore: because TS doesn't like window[dynamicPropertyName]
         window[exportedApplicationGlobal],
         this.application,
         'it creates expected application global on window',
       )
-    },
-  )
+    })
+  })
 
   test('it does not add application global to window if config.embedded.delegateStart is not true', async function (this: Context, assert) {
     this.application.register('config:environment', {
