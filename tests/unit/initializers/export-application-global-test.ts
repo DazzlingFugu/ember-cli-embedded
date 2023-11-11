@@ -33,7 +33,7 @@ module('Unit | Initializer | export-application-global', function (hooks) {
       initialize,
     })
 
-    // @ts-ignore: temporarily required as public types are incomplete
+    // @ts-expect-error: Temporarily required as public types are incomplete
     this.application = this.TestApplication.create({
       autoboot: false,
       Resolver,
@@ -46,8 +46,10 @@ module('Unit | Initializer | export-application-global', function (hooks) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any -- TODO replace `any`
     const config: any = this.application.resolveRegistration('config:environment')
     const exportedApplicationGlobal: string = classify(config.modulePrefix)
-    // @ts-ignore: because TS doesn't like window[dynamicPropertyName]
+
+    // @ts-expect-error: No index signature for Window
     delete window[exportedApplicationGlobal]
+
     run(this.application, 'destroy')
   })
 
@@ -78,7 +80,7 @@ module('Unit | Initializer | export-application-global', function (hooks) {
       )
 
       assert.deepEqual(
-        // @ts-ignore: because TS doesn't like window[dynamicPropertyName]
+        // @ts-expect-error: No index signature for Window
         window[exportedApplicationGlobal],
         this.application,
         'it creates expected application global on window',
@@ -93,7 +95,7 @@ module('Unit | Initializer | export-application-global', function (hooks) {
 
     await this.application.boot()
 
-    // @ts-ignore: because TS doesn't like window[dynamicPropertyName]
+    // @ts-expect-error: No index signature for Window
     assert.notOk(window.SomethingRandom)
   })
 
@@ -108,7 +110,7 @@ module('Unit | Initializer | export-application-global', function (hooks) {
 
     await this.application.boot()
 
-    // @ts-ignore: because TS doesn't like window[dynamicPropertyName]
+    // @ts-expect-error: No index signature for Window
     assert.notOk(window.SomethingRandom)
   })
 
@@ -124,14 +126,14 @@ module('Unit | Initializer | export-application-global', function (hooks) {
     await this.application.boot()
 
     assert.deepEqual(
-      // @ts-ignore: because TS doesn't like window.PropertyName ?
+      // @ts-expect-error: No index signature for Window
       window.SomethingElse,
       this.application,
       'name set in config is used for exported application global, instead of original module prefix',
     )
 
     assert.notOk(
-      // @ts-ignore: because TS doesn't like window.PropertyName ?
+      // @ts-expect-error: No index signature for Window
       window.SomethingRandom,
       'original module prefix is not used in exported application global',
     )
