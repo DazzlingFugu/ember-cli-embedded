@@ -1684,9 +1684,9 @@
     "@types/ember__object" "*"
 
 "@types/ember__controller@*", "@types/ember__controller@^4.0.9":
-  version "4.0.9"
-  resolved "https://registry.yarnpkg.com/@types/ember__controller/-/ember__controller-4.0.9.tgz#6a2c02b5b6ca564788ced54d15bc50ce310e919f"
-  integrity sha512-qR52qCWjhdM9Le0UqQbJp0e8ItKLFZlaMq4WR3CE2D5ezwipmwz13vyVYBbQPGvC3BO+/vh6tqtYjZtXgQdyUg==
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/@types/ember__controller/-/ember__controller-4.0.11.tgz#3416ff326e99adf3d4c3dda0d21fb2b85b726a85"
+  integrity sha512-s8Ut84WJOD9/RGSkcAkwO2zXp3lfpg/Rh2Rk9T1UfxkFol5KYWaPpF7AhHI1P7fdVk8yU8MmylDH+ZOUsK/2zw==
   dependencies:
     "@types/ember__object" "*"
 
