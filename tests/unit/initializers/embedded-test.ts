@@ -3,7 +3,6 @@ import Application from '@ember/application'
 import { initialize } from 'dummy/initializers/embedded'
 import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
-import { run } from '@ember/runloop'
 
 type TestApplication = Application & {
   // Public types are currently incomplete, these 2 properties exist:
@@ -43,7 +42,7 @@ module('Unit | Initializer | embedded', function (hooks) {
   })
 
   hooks.afterEach(function (this: Context) {
-    run(this.application, 'destroy')
+    this.application.destroy()
   })
 
   test('by default, it does not change the normal behaviour', async function (this: Context, assert) {

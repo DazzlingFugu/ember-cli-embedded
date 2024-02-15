@@ -3,7 +3,6 @@ import { initialize } from 'dummy/initializers/export-application-global'
 import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
 import { classify } from '@ember/string'
-import { run } from '@ember/runloop'
 
 import type AppConfig from 'dummy/config/environment'
 
@@ -51,7 +50,7 @@ module('Unit | Initializer | export-application-global', function (hooks) {
     // @ts-expect-error: No index signature for Window
     delete window[exportedApplicationGlobal]
 
-    run(this.application, 'destroy')
+    this.application.destroy()
   })
 
   const testCases = [
