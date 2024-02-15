@@ -3,7 +3,6 @@ import Application from '@ember/application'
 import { initialize } from 'dummy/instance-initializers/embedded'
 import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
-import { run } from '@ember/runloop'
 
 import type { TestContext } from '@ember/test-helpers'
 import type ApplicationInstance from '@ember/application/instance'
@@ -34,8 +33,8 @@ module('Unit | Instance Initializer | embedded', function (hooks) {
   })
 
   hooks.afterEach(function (this: Context) {
-    run(this.appInstance, 'destroy')
-    run(this.application, 'destroy')
+    this.appInstance.destroy()
+    this.application.destroy()
   })
 
   test('It works when `embedded` config is not defined', async function (this: Context, assert) {
