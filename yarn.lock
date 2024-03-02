@@ -1755,9 +1755,9 @@
     "@types/ember__owner" "*"
 
 "@types/ember__error@*", "@types/ember__error@^4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@types/ember__error/-/ember__error-4.0.4.tgz#7e0c29c573cfab76b0bbf523708f7a3e02e2e0a7"
-  integrity sha512-fCDdF5oSzSMIdBjYnJsU1qG/3LdBVZrnQ1oPgRC23/NeOr+bAQHZxTjtSO3/ruyEPtRc02q3a9K/ITz1uphz7g==
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/@types/ember__error/-/ember__error-4.0.6.tgz#ff3b18fc8525c73f92828789bb4fed908e553df9"
+  integrity sha512-vYrLaGGjHkN14K89Vm8yqB2mkpJQefE5w7QJkkgYyV+smzns1vKlPbvuFevRtoeYNn4u4yY0JyF7HceNkm3H0Q==
 
 "@types/ember__helper@^4.0.4":
   version "4.0.4"
