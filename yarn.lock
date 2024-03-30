@@ -1809,9 +1809,9 @@
     "@types/ember__owner" "*"
 
 "@types/ember__object@*", "@types/ember__object@^4.0.9":
-  version "4.0.9"
-  resolved "https://registry.yarnpkg.com/@types/ember__object/-/ember__object-4.0.9.tgz#7c2f9367ac989e00a2fe9a08ecd5f3aa6f55dcd6"
-  integrity sha512-yf20VPBWNdDjgZpmY33rg4OBt1nm0OasU1zuRrMDnATSUgIK2KLc2DxMPAXqr9YTpMtOd599LWdvYf4w+u4S5g==
+  version "4.0.12"
+  resolved "https://registry.yarnpkg.com/@types/ember__object/-/ember__object-4.0.12.tgz#042f89e19e8af5fae3f144074adf04a69d19a53d"
+  integrity sha512-ZEpikPjZ02m1QCBiTPTayMJwVwF4UBlHlGDoScRB3IP/SUS1O5mmn1/CnSQDxzzF3ctfmhNuTZzVBBc1Y8OC1A==
   dependencies:
     "@types/ember" "*"
     "@types/rsvp" "*"
