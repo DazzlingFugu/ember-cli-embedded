@@ -2,7 +2,7 @@ import Application from '@ember/application'
 import { initialize } from 'dummy/initializers/export-application-global'
 import { module, test } from 'qunit'
 import Resolver from 'ember-resolver'
-import { classify } from '@ember/string'
+import { classify } from 'ember-cli-embedded/utils/classify'
 
 import type AppConfig from 'dummy/config/environment'
 

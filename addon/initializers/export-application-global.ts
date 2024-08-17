@@ -1,5 +1,5 @@
 import Application from '@ember/application'
-import { classify } from '@ember/string'
+import { classify } from 'ember-cli-embedded/utils/classify'
 
 export function initialize(application: Application): void {
   const env = application.resolveRegistration('config:environment') as {
