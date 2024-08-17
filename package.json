@@ -72,7 +72,6 @@
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
-    "@ember/string": "^4.0.0",
     "@ember/test-helpers": "^3.2.0",
     "@embroider/test-setup": "^4.0.0",
     "@glint/environment-ember-loose": "^1.2.1",
@@ -132,7 +131,6 @@
     "webpack": "^5.89.0"
   },
   "peerDependencies": {
-    "@ember/string": "^4.0.0",
     "ember-source": ">= 4.0.0"
   },
   "engines": {
