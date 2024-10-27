@@ -2,11 +2,12 @@ import { module, test } from 'qunit'
 import { setupTest } from 'ember-qunit'
 
 import type EmbeddedService from 'ember-cli-embedded/services/embedded'
+import type { TestContext } from '@ember/test-helpers'
 
 module('Unit | Service | embedded', function (hooks) {
   setupTest(hooks)
 
-  test('it fetches data from the config as a proxy', function (assert) {
+  test('it fetches data from the config as a proxy', function (this: TestContext, assert) {
     const options = { myKey: 'myValue' }
 
     this.owner.register('config:embedded', options)
