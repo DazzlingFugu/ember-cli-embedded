@@ -90,23 +90,20 @@ export default tseslint.config(
       '@typescript-eslint/no-empty-function': ['error'],
     },
   },
-  // Config for Typescript files
-  ...compat
-    .extends(
-      'plugin:@typescript-eslint/eslint-recommended',
-      'plugin:@typescript-eslint/recommended',
-    )
-    .map((config) => ({
-      ...config,
-      files: ['**/*.ts'],
+  {
+    // Config for Typescript files
 
-      rules: {
-        '@typescript-eslint/explicit-module-boundary-types': ['error'],
-        '@typescript-eslint/no-unused-vars': 'off',
-        'no-undef': 'off',
-        'no-unused-vars': 'off',
-      },
-    })),
+    extends: [tseslint.configs.recommended],
+
+    files: ['**/*.ts'],
+
+    rules: {
+      '@typescript-eslint/explicit-module-boundary-types': ['error'],
+      '@typescript-eslint/no-unused-vars': 'off',
+      'no-undef': 'off',
+      'no-unused-vars': 'off',
+    },
+  },
   {
     // Config for Node files
 
