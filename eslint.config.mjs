@@ -1,11 +1,10 @@
 import ember from "eslint-plugin-ember";
-import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import globals from "globals";
-import tsParser from "@typescript-eslint/parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import tseslint from 'typescript-eslint'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,7 +34,7 @@ export default [{
 ), {
     plugins: {
         ember,
-        "@typescript-eslint": typescriptEslint,
+        "@typescript-eslint": tseslint.plugin,
     },
 
     languageOptions: {
@@ -43,7 +42,7 @@ export default [{
             ...globals.browser,
         },
 
-        parser: tsParser,
+        parser: tseslint.parser,
         ecmaVersion: "latest",
         sourceType: "script",
     },
