@@ -5,7 +5,9 @@ import { FlatCompat } from '@eslint/eslintrc'
 import tseslint from 'typescript-eslint'
 
 import pluginEmber from 'eslint-plugin-ember'
+import pluginEmberRecommended from 'eslint-plugin-ember/configs/recommended'
 import pluginEslintJs from '@eslint/js'
+import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -16,6 +18,11 @@ const compat = new FlatCompat({
 })
 
 export default tseslint.config(
+  pluginEslintJs.configs.recommended,
+  // @ts-expect-error: See https://github.com/ember-tooling/ember-eslint-parser/issues/113
+  ...pluginEmberRecommended,
+  pluginPrettierRecommended,
+
   {
     ignores: [
       // Unconventional js
@@ -37,14 +44,8 @@ export default tseslint.config(
       'yarn.lock.ember-try',
     ],
   },
-  ...compat.extends(
-    'eslint:recommended',
-    'plugin:ember/recommended',
-    'plugin:prettier/recommended',
-  ),
   {
     plugins: {
-      // @ts-expect-error: See https://github.com/ember-tooling/ember-eslint-parser/issues/113
       ember: pluginEmber,
       '@typescript-eslint': tseslint.plugin,
     },
