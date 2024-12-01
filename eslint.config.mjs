@@ -9,6 +9,7 @@ import pluginEmberRecommended from 'eslint-plugin-ember/configs/recommended'
 import pluginEslintJs from '@eslint/js'
 import pluginNode from 'eslint-plugin-n'
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import pluginQunitRecommended from 'eslint-plugin-qunit/configs/recommended'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -116,10 +117,12 @@ export default tseslint.config(
       },
     },
   },
-  ...compat.extends('plugin:qunit/recommended').map((config) => ({
-    ...config,
+  {
+    // Config for test files
+
+    ...pluginQunitRecommended,
     files: ['tests/**/*-test.{js,ts}'],
-  })),
+  },
   {
     files: ['**/*.ts'],
 
