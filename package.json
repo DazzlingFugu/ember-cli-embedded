@@ -119,7 +119,7 @@
     "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-ember": "^12.3.3",
-    "eslint-plugin-n": "^17.4.0",
+    "eslint-plugin-n": "^17.14.0",
     "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-qunit": "^8.0.1",
     "loader.js": "^4.7.0",
