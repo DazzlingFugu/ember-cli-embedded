@@ -70,11 +70,22 @@ export default tseslint.config(
           'ts-expect-error': 'allow-with-description',
           'ts-ignore': 'allow-with-description',
           'ts-nocheck': 'allow-with-description',
-          minimumDescriptionLength: 7,
+          /**
+           * Count 2 characters for `: ` when giving a description.
+           *
+           * @ts-nocheck: a
+           *            ^^^--- Description of 3 characters
+           *
+           * @ts-nocheck: abc
+           *            ^^^^^--- Description of 5 characters
+           */
+          minimumDescriptionLength: 7, // minimum of 2 + 5
         },
       ],
 
+      // This rule is overriden and configured in the `overrides` Array below
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+
       'no-empty-function': 'off',
       '@typescript-eslint/no-empty-function': ['error'],
     },
