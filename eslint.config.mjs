@@ -7,6 +7,7 @@ import tseslint from 'typescript-eslint'
 import pluginEmber from 'eslint-plugin-ember'
 import pluginEmberRecommended from 'eslint-plugin-ember/configs/recommended'
 import pluginEslintJs from '@eslint/js'
+import pluginNode from 'eslint-plugin-n'
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 const __filename = fileURLToPath(import.meta.url)
@@ -90,8 +91,10 @@ export default tseslint.config(
     files: ['**/*.ts'],
     rules: {},
   },
-  ...compat.extends('plugin:n/recommended').map((config) => ({
-    ...config,
+  {
+    // Config for Node files
+
+    ...pluginNode.configs['flat/recommended-script'],
 
     files: [
       '.prettierrc.js',
@@ -112,7 +115,7 @@ export default tseslint.config(
         ...globals.node,
       },
     },
-  })),
+  },
   ...compat.extends('plugin:qunit/recommended').map((config) => ({
     ...config,
     files: ['tests/**/*-test.{js,ts}'],
