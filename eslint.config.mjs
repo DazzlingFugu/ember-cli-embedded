@@ -15,7 +15,7 @@ const compat = new FlatCompat({
   allConfig: pluginEslintJs.configs.all,
 })
 
-export default [
+export default tseslint.config(
   {
     ignores: [
       // Unconventional js
@@ -44,6 +44,7 @@ export default [
   ),
   {
     plugins: {
+      // @ts-expect-error: See https://github.com/ember-tooling/ember-eslint-parser/issues/113
       ember: pluginEmber,
       '@typescript-eslint': tseslint.plugin,
     },
@@ -145,4 +146,4 @@ export default [
       'no-unused-vars': 'off',
     },
   },
-]
+)
