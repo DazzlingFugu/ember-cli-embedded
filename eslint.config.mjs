@@ -1,7 +1,4 @@
 import globals from 'globals'
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { FlatCompat } from '@eslint/eslintrc'
 import tseslint from 'typescript-eslint'
 
 import pluginEmber from 'eslint-plugin-ember'
@@ -10,14 +7,6 @@ import pluginEslintJs from '@eslint/js'
 import pluginNode from 'eslint-plugin-n'
 import pluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import pluginQunitRecommended from 'eslint-plugin-qunit/configs/recommended'
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: pluginEslintJs.configs.recommended,
-  allConfig: pluginEslintJs.configs.all,
-})
 
 export default tseslint.config(
   pluginEslintJs.configs.recommended,
