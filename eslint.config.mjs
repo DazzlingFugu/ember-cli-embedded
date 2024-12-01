@@ -1,17 +1,18 @@
-import ember from "eslint-plugin-ember";
 import globals from "globals";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
 import tseslint from "typescript-eslint";
+
+import pluginEmber from "eslint-plugin-ember";
+import pluginEslintJs from "@eslint/js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
   baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
+  recommendedConfig: pluginEslintJs.configs.recommended,
+  allConfig: pluginEslintJs.configs.all,
 });
 
 export default [
@@ -36,7 +37,7 @@ export default [
   ),
   {
     plugins: {
-      ember,
+      ember: pluginEmber,
       "@typescript-eslint": tseslint.plugin,
     },
 
