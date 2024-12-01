@@ -105,20 +105,6 @@ export default tseslint.config(
       'config/**/*.js',
       'tests/dummy/config/**/*.js',
     ],
-  })),
-  {
-    files: [
-      '.prettierrc.js',
-      '.stylelintrc.js',
-      '.template-lintrc.js',
-      'ember-cli-build.js',
-      'eslint.config.mjs',
-      'index.js',
-      'testem.js',
-      'blueprints/*/index.js',
-      'config/**/*.js',
-      'tests/dummy/config/**/*.js',
-    ],
 
     languageOptions: {
       globals: {
@@ -126,7 +112,7 @@ export default tseslint.config(
         ...globals.node,
       },
     },
-  },
+  })),
   ...compat.extends('plugin:qunit/recommended').map((config) => ({
     ...config,
     files: ['tests/**/*-test.{js,ts}'],
