@@ -79,6 +79,7 @@ export default tseslint.config(
       '@typescript-eslint/no-empty-function': ['error'],
     },
   },
+  // Config for Typescript files
   ...compat
     .extends(
       'plugin:@typescript-eslint/eslint-recommended',
@@ -87,11 +88,14 @@ export default tseslint.config(
     .map((config) => ({
       ...config,
       files: ['**/*.ts'],
+
+      rules: {
+        '@typescript-eslint/explicit-module-boundary-types': ['error'],
+        '@typescript-eslint/no-unused-vars': 'off',
+        'no-undef': 'off',
+        'no-unused-vars': 'off',
+      },
     })),
-  {
-    files: ['**/*.ts'],
-    rules: {},
-  },
   {
     // Config for Node files
 
@@ -122,21 +126,5 @@ export default tseslint.config(
 
     ...pluginQunitRecommended,
     files: ['tests/**/*-test.{js,ts}'],
-  },
-  {
-    files: ['**/*.ts'],
-
-    rules: {
-      '@typescript-eslint/explicit-module-boundary-types': ['error'],
-    },
-  },
-  {
-    files: ['**/*.ts'],
-
-    rules: {
-      '@typescript-eslint/no-unused-vars': 'off',
-      'no-undef': 'off',
-      'no-unused-vars': 'off',
-    },
   },
 )
