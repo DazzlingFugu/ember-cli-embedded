@@ -1627,9 +1627,9 @@
     "@glimmer/util" "0.92.3"
 
 "@glint/environment-ember-loose@^1.2.1":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@glint/environment-ember-loose/-/environment-ember-loose-1.4.0.tgz#282cdc5967345c696be40d046d9bcb3fc231bdd6"
-  integrity sha512-vFR3qgPTisGzS36e04195wTUrtUc6GuVwm6hsC/XXx6PeRw/6rtMxhK08Aw/VtDc00UqQzM9sIEghPVKHwqVVQ==
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/@glint/environment-ember-loose/-/environment-ember-loose-1.5.2.tgz#0fb83186d440966111e8f876616091e4530a7c65"
+  integrity sha512-AuYRwZbQZW13WMW9tmyYqSGHLBXbdXn+HqdRDAG1qHItnjON4uv6sJVQUrnadlMT3G2AVRjL6jtfnwHs3t2Kuw==
 
 "@glint/template@^1.2.1":
   version "1.5.2"
