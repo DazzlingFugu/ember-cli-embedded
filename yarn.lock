@@ -1083,27 +1083,25 @@
     mkdirp "^1.0.4"
     silent-error "^1.1.1"
 
-"@ember/test-helpers@^4.0.2":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-4.0.4.tgz#2ffb55c8438b8ba54ecd4f546059ba0166bc00f2"
-  integrity sha512-1mbOVyVEcLxYOGzBaeeaQkCrL1o9Av86QaHk/1RvrVBW24I6YUj1ILLEi2qLZT5PzcCy0TdfadHT3hKJwJ0GcQ==
+"@ember/test-helpers@^5.2.2":
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-5.2.2.tgz#275e47154b62915105da0681cc6e7ede80e4e1aa"
+  integrity sha512-Cclqeh0j6RnYvoaElAVC3Nd1fsSUkc3oUTwTsLlNiC3riyPq8lNYxh96VM59/yji2ntrd/cJQ7qhhSZWd6hsEw==
   dependencies:
-    "@ember/test-waiters" "^3.1.0"
+    "@ember/test-waiters" "^3.1.0 || ^4.0.0"
     "@embroider/addon-shim" "^1.8.7"
     "@embroider/macros" "^1.16.5"
     "@simple-dom/interface" "^1.4.0"
     decorator-transforms "^2.0.0"
     dom-element-descriptors "^0.5.0"
 
-"@ember/test-waiters@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-3.1.0.tgz#61399919cbf793978da0b8bfdfdb7bca0cb80e9e"
-  integrity sha512-bb9h95ktG2wKY9+ja1sdsFBdOms2lB19VWs8wmNpzgHv1NCetonBoV5jHBV4DHt0uS1tg9z66cZqhUVlYs96KQ==
+"@ember/test-waiters@^3.1.0 || ^4.0.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-4.1.0.tgz#4e676db277b4bc4c52e5d1ed1c8c22b07c54ac57"
+  integrity sha512-qRFA0OumYv7/C3hmx4ETC2dlPzyD549D+naPhcrnV2xCnc3AZlKouWyoFnNF+Cje918kRp9aEefVgV3vmGL5Bg==
   dependencies:
-    calculate-cache-key-for-tree "^2.0.0"
-    ember-cli-babel "^7.26.6"
-    ember-cli-version-checker "^5.1.2"
-    semver "^7.3.5"
+    "@embroider/addon-shim" "^1.9.0"
+    "@embroider/macros" "^1.16.9"
 
 "@embroider/addon-shim@^1.8.7", "@embroider/addon-shim@^1.9.0":
   version "1.10.0"
@@ -1115,10 +1113,10 @@
     common-ancestor-path "^1.0.1"
     semver "^7.3.8"
 
-"@embroider/macros@^1.0.0", "@embroider/macros@^1.16.12", "@embroider/macros@^1.16.5":
-  version "1.17.1"
-  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.17.1.tgz#2cc9f55706af17e7569900517a68f49e814a3d65"
-  integrity sha512-pi039RDy2CvgM+RwJ9NMFU4wYMKlSp9p+WyHFfQpZ2e/HL78O1KM1+MEaKnIve6MrXvo7QD7/Kn6MpMTzV1MSQ==
+"@embroider/macros@^1.0.0", "@embroider/macros@^1.16.12", "@embroider/macros@^1.16.5", "@embroider/macros@^1.16.9":
+  version "1.18.0"
+  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.18.0.tgz#d79c4474667559ac9baf903e8fb89f1b00a0c45a"
+  integrity sha512-KanP80XxNK4bmQ1HKTcUjy/cdCt9n7knPMLK1vzHdOFymACHo+GbhgUjXjYdOCuBTv+ZwcjL2P2XDmBcYS9r8g==
   dependencies:
     "@embroider/shared-internals" "3.0.0"
     assert-never "^1.2.1"
