@@ -113,7 +113,7 @@
     "ember-load-initializers": "^3.0.1",
     "ember-qunit": "^9.0.1",
     "ember-resolver": "^13.0.1",
-    "ember-source": "~5.11.0",
+    "ember-source": "~6.6.0",
     "ember-source-channel-url": "^3.0.0",
     "ember-try": "^4.0.0",
     "eslint": "^9.16.0",
